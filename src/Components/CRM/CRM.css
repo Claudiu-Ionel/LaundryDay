@@ -1,0 +1,100 @@
+#registration-form,
+#login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  font-size: 20px;
+}
+
+.reg-section,
+.login-section {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.reg-section label,
+.login-section label {
+  position: absolute;
+  left: -130px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  min-width: 125px;
+}
+.reg-section input,
+.login-section input {
+  height: 30px;
+  width: 250px;
+  padding: 5px;
+  font-size: 20px;
+}
+
+.button {
+  width: fit-content;
+  padding: 10px;
+}
+
+#cities-form {
+  position: relative;
+  padding: 10px;
+  z-index: 3;
+  background: rgba(0, 0, 0, 0.7);
+  margin-bottom: 10px;
+  width: 400px;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  border-radius: 0px 0px 15px 15px;
+}
+#cities-form label {
+  color: #fff;
+}
+
+#cities-form input,
+select,
+textarea {
+  margin-left: 5px;
+  background: #000;
+  color: #fff;
+  padding: 2px;
+  border: solid #fff 1px;
+  height: 18px;
+}
+
+#cities-form button {
+  background: #000;
+  border: solid #fff 1px;
+  margin-left: 4px;
+  height: 23px;
+  color: #fff;
+}
+#city-list {
+  position: absolute;
+  top: 30px;
+  left: auto;
+  margin-top: 10px;
+  display: none;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 200px;
+  height: 200px;
+  overflow: auto;
+  background-color: white;
+}
+#city-list span {
+  display: flex;
+  justify-content: flex-start;
+  cursor: pointer;
+}
+#city-list span:hover {
+  background: coral;
+  color: white;
+}
