@@ -1,0 +1,23 @@
+/* setting up the backgrounds for different seasons */
+.winter {
+    background-image: url("./src/img/backgrounds/aaron-burden-5AiWn2U10cw-unsplash.jpg");
+}
+
+.spring {
+    background-image: url("./src/img/backgrounds/ryan-stone-jV2cNlH4e6A-unsplash.jpg");
+}
+
+.summer {
+    background-image: url("./src/img/backgrounds/tj-holowaychuk-1EYMue_AwDw-unsplash.jpg");
+}
+
+.autumn {
+    background-image: url("./src/img/backgrounds/sora-sagano-Q-wPqMx3X1I-unsplash.jpg");
+}
+
+main {
+    width: 100vw;
+    height: 100vh;
+    background-color: aquamarine;
+    background-image: url("./src/img/backgrounds/ryan-stone-jV2cNlH4e6A-unsplash.jpg");
+}
