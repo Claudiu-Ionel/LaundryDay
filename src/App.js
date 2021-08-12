@@ -1,11 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
-import RegistrationCRM from './Components/CRM/Registration_CRM.jsx'
-import LoginCRM from './Components/CRM/Login_CRM.jsx'
+import RegistrationDBMS from './pages/Registration_DBMS.jsx'
+import LoginDBMS from './pages/Login_DBMS.jsx'
+import DBMS from './pages/DBMS';
 function App() {
   return (
     <div className="App">
-      <RegistrationCRM />
+      {/* <LoginDBMS /> */}
+      <DBMS />
     </div>
   );
 }

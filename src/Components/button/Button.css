@@ -1,0 +1,18 @@
+.button {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 2px;
+  background-color: #c4c4c4;
+  cursor: pointer;
+  border: 0 solid black;
+}
+.button:active {
+  background-color: #c4c4c4bd;
+}
+.blue {
+  background-color: #35aafe;
+  color: #fff;
+}
+.blue:active {
+  background-color: #35aafece;
+}

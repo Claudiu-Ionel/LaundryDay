@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import Axios from 'axios';
-import './CRM.css';
-const Registration_CRM = () => {
+import './DBMS.css';
+const Registration_DBMS = () => {
   // const [regButtonOn, setRegButtonOn] = useState(false);
   const [username, setUsername] = useState(null);
   const [email, setEmail] = useState(null);
@@ -11,22 +11,22 @@ const Registration_CRM = () => {
   const emailRef = useRef(null);
   const passRef = useRef(null);
   const inputControl = (e, setState, ref) => {
-    let input = ref.current
+    let input = ref.current;
     let inputValue = ref.current.value;
-    const valueLength = ref.current.value.length
+    const valueLength = ref.current.value.length;
     const conditions = [' ', ';', '+', '-', '='];
     const rejectionStatement = conditions.some((el) => inputValue.includes(el));
-    
+
     if (rejectionStatement) {
       ref.current.value = null;
-      input.style.outlineColor = "red"
+      input.style.outlineColor = 'red';
       setState(null);
       setErrMsg(`Please do not use: space, ';', '+', '-', '='`);
     } else if (valueLength === 0 || null) {
-      input.style.outlineColor = "rgb(59, 59, 59)"
+      input.style.outlineColor = 'rgb(59, 59, 59)';
     } else {
       setState(inputValue);
-      input.style.outlineColor = "rgb(52, 235, 82)"
+      input.style.outlineColor = 'rgb(52, 235, 82)';
       setErrMsg(``);
     }
   };
@@ -70,8 +70,8 @@ const Registration_CRM = () => {
   };
 
   useEffect(() => {
-    console.log("useEffect");
-  }, [])
+    console.log('useEffect');
+  }, []);
 
   return (
     <form onSubmit={(e) => registerHandler(e)} id="registration-form">
@@ -121,4 +121,4 @@ const Registration_CRM = () => {
   );
 };
 
-export default Registration_CRM;
+export default Registration_DBMS;

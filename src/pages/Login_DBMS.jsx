@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Axios from 'axios';
-import './CRM.css';
-const Login_CRM = () => {
+import './DBMS.css';
+const Login_DBMS = () => {
   // const [regButtonOn, setRegButtonOn] = useState(false);
   const [logUsername, setLogUsername] = useState(null);
   const [logPassword, setLogPassword] = useState(null);
@@ -48,7 +48,7 @@ const Login_CRM = () => {
 
   return (
     <form onSubmit={(e) => loginHandler(e)} id="login-form">
-      <h2>Log In Form </h2>
+      <h2>ADMINS</h2>
       <section className="login-section">
         <label htmlFor="username">Username: </label>
         <input
@@ -79,4 +79,4 @@ const Login_CRM = () => {
   );
 };
 
-export default Login_CRM;
+export default Login_DBMS;

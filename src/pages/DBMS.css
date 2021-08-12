@@ -1,0 +1,52 @@
+#registration-form,
+#login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  font-size: 20px;
+}
+
+.reg-section,
+.login-section {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.reg-section label,
+.login-section label {
+  position: absolute;
+  left: -130px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  min-width: 125px;
+}
+.reg-section input,
+.login-section input {
+  height: 30px;
+  width: 250px;
+  padding: 5px;
+  font-size: 20px;
+}
+
+.button {
+  width: fit-content;
+  padding: 10px;
+}
+
+#navbar {
+  display: flex;
+  padding: 5px 10px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: rgba(196, 196, 196, 0.24);
+}
