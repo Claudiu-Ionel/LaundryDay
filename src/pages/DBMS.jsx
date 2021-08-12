@@ -3,6 +3,7 @@ import Admin from '../Components/Admin/Admin';
 import Button from '../Components/button/Button';
 import DropdownInput from '../Components/Dropdown_input/Dropdown_input';
 import './DBMS.css';
+import { Helmet } from 'react-helmet';
 
 export default function DBMS() {
   const addTenant = (e) => {
@@ -26,7 +27,7 @@ export default function DBMS() {
   const [street, setStreet] = useState('');
   const [area, setArea] = useState('');
   return (
-    <>
+    <> <Helmet><title>Våran Tvättstuga - admin</title></Helmet>
       <nav id="navbar">
         <Admin admin={'DummyAdmin'} />
         <div className="navbar-buttons">
