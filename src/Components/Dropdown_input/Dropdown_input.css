@@ -28,14 +28,22 @@ input.dropdown_input {
   flex-direction: column;
   align-items: flex-start;
   padding: 5px;
+  width: 100%;
   transition: visibility 0.1s;
+  background-color: rgba(196, 196, 196, 0.24);
+  position: absolute;
+  top: 40px;
 }
 
 input.dropdown_input:focus + .choice-list {
   visibility: visible;
 }
-
+.choice-list span {
+  width: 100%;
+  text-align: left;
+}
 .choice-list span:hover {
   cursor: pointer;
   background-color: #35aafe;
+  color: #fff;
 }

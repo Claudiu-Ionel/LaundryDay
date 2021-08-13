@@ -1,5 +1,6 @@
 import React from 'react';
 import './TenantsSection.css';
+
 const TenantSection = () => {
   return (
     <div id="tenants-section">
