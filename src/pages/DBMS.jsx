@@ -3,7 +3,8 @@ import Admin from '../Components/Admin/Admin';
 import Button from '../Components/button/Button';
 import DropdownInput from '../Components/Dropdown_input/Dropdown_input';
 import './DBMS.css';
-import { Helmet } from 'react-helmet';
+// import { Helmet } from 'react-helmet-async';
+import TenantSection from '../Components/TenantSection/TenantSection';
 
 export default function DBMS() {
   const addTenant = (e) => {
@@ -18,6 +19,9 @@ export default function DBMS() {
     e.preventDefault();
     if (city && street && area) {
       console.log(city, street, area);
+      setCity('');
+      setStreet('');
+      setArea('');
     } else {
       return;
     }
@@ -27,7 +31,7 @@ export default function DBMS() {
   const [street, setStreet] = useState('');
   const [area, setArea] = useState('');
   return (
-    <> <Helmet><title>Våran Tvättstuga - admin</title></Helmet>
+    <>
       <nav id="navbar">
         <Admin admin={'DummyAdmin'} />
         <div className="navbar-buttons">
@@ -56,6 +60,7 @@ export default function DBMS() {
         />
         <Button text={'Show tenants'} eventHandler={showTenant} className={'button blue'}></Button>
       </form>
+      <TenantSection />
     </>
   );
 }
