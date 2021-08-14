@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import Axios from 'axios';
 import './DBMS.css';
+import inputControl from '../Functions/InputControl/InputControl';
+
 const Registration_DBMS = () => {
   // const [regButtonOn, setRegButtonOn] = useState(false);
   const [username, setUsername] = useState(null);
@@ -10,26 +12,7 @@ const Registration_DBMS = () => {
   const regRef = useRef(null);
   const emailRef = useRef(null);
   const passRef = useRef(null);
-  const inputControl = (e, setState, ref) => {
-    let input = ref.current;
-    let inputValue = ref.current.value;
-    const valueLength = ref.current.value.length;
-    const conditions = [' ', ';', '+', '-', '='];
-    const rejectionStatement = conditions.some((el) => inputValue.includes(el));
 
-    if (rejectionStatement) {
-      ref.current.value = null;
-      input.style.outlineColor = 'red';
-      setState(null);
-      setErrMsg(`Please do not use: space, ';', '+', '-', '='`);
-    } else if (valueLength === 0 || null) {
-      input.style.outlineColor = 'rgb(59, 59, 59)';
-    } else {
-      setState(inputValue);
-      input.style.outlineColor = 'rgb(52, 235, 82)';
-      setErrMsg(``);
-    }
-  };
   const clearInputValues = () => {
     const inputs = document.querySelectorAll('input');
     const inputsArray = [...inputs];
@@ -69,10 +52,6 @@ const Registration_DBMS = () => {
     clearInputValues();
   };
 
-  useEffect(() => {
-    console.log('useEffect');
-  }, []);
-
   return (
     <form onSubmit={(e) => registerHandler(e)} id="registration-form">
       <h2>Registration form</h2>
@@ -85,7 +64,7 @@ const Registration_DBMS = () => {
           required
           ref={regRef}
           onChange={(e) => {
-            inputControl(e, setUsername, regRef);
+            inputControl(e, setUsername, regRef, setErrMsg);
           }}
         />
       </section>
@@ -98,7 +77,7 @@ const Registration_DBMS = () => {
           required
           ref={emailRef}
           onChange={(e) => {
-            inputControl(e, setEmail, emailRef);
+            inputControl(e, setEmail, emailRef, setErrMsg);
           }}
         />
       </section>
@@ -111,7 +90,7 @@ const Registration_DBMS = () => {
           required
           ref={passRef}
           onChange={(e) => {
-            inputControl(e, setPassword, passRef);
+            inputControl(e, setPassword, passRef, setErrMsg);
           }}
         />
       </section>

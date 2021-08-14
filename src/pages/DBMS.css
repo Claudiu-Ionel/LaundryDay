@@ -36,11 +36,6 @@
   font-size: 20px;
 }
 
-.button {
-  width: fit-content;
-  padding: 10px;
-}
-
 #navbar {
   display: flex;
   padding: 5px 10px;

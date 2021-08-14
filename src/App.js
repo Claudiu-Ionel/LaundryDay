@@ -3,18 +3,18 @@ import './App.css';
 import RegistrationDBMS from './pages/Registration_DBMS.jsx'
 import LoginDBMS from './pages/Login_DBMS.jsx'
 import DBMS from './pages/DBMS';
-import Main from './pages/Main/Main';
-import { Helmet } from 'react-helmet';
+import AddTenant from './Components/AddTenant/AddTenant';
 function App() {
   return (
-    <div className="App">
-      <Helmet>
-        <title>Våran Tvättstuga</title>
-      </Helmet>
+    <>
+      <div className="App">
+        {/* <RegistrationDBMS /> */}
         {/* <LoginDBMS /> */}
         {/* <DBMS /> */}
-        <Main />
-    </div>
+        <AddTenant />
+      </div>
+    </>
+
   );
 }
 

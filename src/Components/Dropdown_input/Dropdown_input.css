@@ -1,27 +1,49 @@
+#search-menu {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
 .input-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin: 0px 10px;
   position: relative;
-  width: 100%;
-  height: 300px;
 }
 
 input.dropdown_input {
-  padding: 6px;
+  padding: 7px;
   width: 200px;
+
   font-size: 14px;
 }
 
 .choice-list {
   display: flex;
+  visibility: hidden;
   flex-direction: column;
   align-items: flex-start;
   padding: 5px;
+  width: 100%;
+  transition: visibility 0.1s;
+  background-color: rgba(196, 196, 196, 0.24);
+  position: absolute;
+  top: 40px;
 }
-#search-menu {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+
+input.dropdown_input:focus + .choice-list {
+  visibility: visible;
+}
+.choice-list span {
+  width: 100%;
+  text-align: left;
+}
+.choice-list span:hover {
+  cursor: pointer;
+  background-color: #35aafe;
+  color: #fff;
 }
