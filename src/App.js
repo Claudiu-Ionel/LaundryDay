@@ -9,11 +9,11 @@ function App() {
   return (
     <>
       <div className="App">
-        {/* <RegistrationDBMS /> */}
-        {/* <LoginDBMS /> */}
-        {/* <DBMS /> */}
+        <RegistrationDBMS />
+        <LoginDBMS />
+        <DBMS />
         {/* <AddTenant /> */}
-        <Background />
+        {/* <Background /> */}
       </div>
     </>
 
