@@ -14,7 +14,7 @@ const inputControl = (e, setState, ref, setErrMsg) => {
     input.style.outlineColor = 'rgb(59, 59, 59)';
   } else {
     setState(inputValue);
-    input.style.outlineColor = 'rgb(52, 235, 82)';
+    input.style.outlineColor = 'rgb(59, 59, 59)';
     setErrMsg(``);
   }
 };

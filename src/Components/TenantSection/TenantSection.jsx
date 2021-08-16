@@ -1,7 +1,7 @@
 import React from 'react';
 import './TenantsSection.css';
 
-const TenantSection = () => {
+const TenantSection = ({ data }) => {
   return (
     <div id="tenants-section">
       <div className="table-headers">

@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import Axios from 'axios';
 import './DBMS.css';
-import inputControl from '../Functions/InputControl/InputControl';
+import inputControl from '../../Functions/InputControl/InputControl';
 
 const Registration_DBMS = () => {
   // const [regButtonOn, setRegButtonOn] = useState(false);

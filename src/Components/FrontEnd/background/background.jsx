@@ -1,51 +1,47 @@
-import { useState, useEffect } from "react";
-import "./Backround.css";
+import { useState, useEffect } from 'react';
+import './background.css';
 
 function Background() {
   // getting current date
   let today = new Date();
   let months = [
-    "Janiari",
-    "Februari",
-    "Mars",
-    "April",
-    "Mai",
-    "Juni",
-    "Juli",
-    "Augusti",
-    "September",
-    "Oktober",
-    "November",
-    "December",
+    'Janiari',
+    'Februari',
+    'Mars',
+    'April',
+    'Mai',
+    'Juni',
+    'Juli',
+    'Augusti',
+    'September',
+    'Oktober',
+    'November',
+    'December',
   ];
   let month = months[today.getMonth()];
-  let date =
-    "den" + " " + today.getDate() + " " + month + " " + today.getFullYear();
+  let date = 'den' + ' ' + today.getDate() + ' ' + month + ' ' + today.getFullYear();
 
   // getting current time
-  let time = "";
+  let time = '';
 
   // changing backgrounds according to seasons:
   let [seasonBackground, setSeasonBackground] = useState('winter');
   function changeBackgrounds() {
-    if (month === "December" || "Januari" || "Februari") {
-      setSeasonBackground("winter");
-    } else if (month === "Mars" || "April" || "Mai") {
-      setSeasonBackground("spring");
-    } else if (month === "Juni" || "Juli" || "Augusti") {
-      setSeasonBackground("summer");
+    if (month === 'December' || 'Januari' || 'Februari') {
+      setSeasonBackground('winter');
+    } else if (month === 'Mars' || 'April' || 'Mai') {
+      setSeasonBackground('spring');
+    } else if (month === 'Juni' || 'Juli' || 'Augusti') {
+      setSeasonBackground('summer');
     } else {
-      setSeasonBackground("autumn");
+      setSeasonBackground('autumn');
     }
   }
-console.log(seasonBackground);
+  console.log(seasonBackground);
 
   useEffect(() => {
     changeBackgrounds();
   });
-
-  
-  
 
   return (
     <div className="main">
