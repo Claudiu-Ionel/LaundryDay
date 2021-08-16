@@ -1,0 +1,70 @@
+.main {
+  width: 100vw;
+  height: 100vh;
+}
+
+/* backgrounds: */
+.winter {
+  background-image: url("/src/img/backgrounds/aaron-burden-5AiWn2U10cw-unsplash.jpg");
+}
+
+.spring {
+  background-image: url("/src/img/backgrounds/ryan-stone-jV2cNlH4e6A-unsplash.jpg");
+}
+
+.summer {
+  background-image: url("/src/img/backgrounds/tj-holowaychuk-1EYMue_AwDw-unsplash.jpg");
+}
+
+.autumn {
+  background-image: url("/src/img/backgrounds/sora-sagano-Q-wPqMx3X1I-unsplash.jpg");
+}
+
+.winter,
+.spring,
+.summer,
+.autumn {
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Time, date and the language block: */
+.timeDateLanguageContainer {
+  background-color: aquamarine;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Photo author block: */
+.photoAuthorInfo {
+  border: red solid 3px;
+  display: flex;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+.photoAuthorInfo p {
+  border: blueviolet dotted 2px;
+  margin: 0;
+  text-shadow: 2px -1px 7px #fff;
+}
+
+.photoAuthorInfo a {
+  border: dotted forestgreen 2px;
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+  text-decoration: none;
+  color: #000;
+  text-shadow: 2px -1px 7px #fff;
+}
+
+.photoAuthorInfo a:hover {
+  text-decoration: underline;
+}
+
+.photoAuthorInfo a:visited {
+  color: #000;
+}

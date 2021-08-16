@@ -4,6 +4,7 @@ import RegistrationDBMS from './pages/Registration_DBMS.jsx'
 import LoginDBMS from './pages/Login_DBMS.jsx'
 import DBMS from './pages/DBMS';
 import AddTenant from './Components/AddTenant/AddTenant';
+import Background from './Components/FrontEnd/background/background';
 function App() {
   return (
     <>
@@ -11,7 +12,8 @@ function App() {
         {/* <RegistrationDBMS /> */}
         {/* <LoginDBMS /> */}
         {/* <DBMS /> */}
-        <AddTenant />
+        {/* <AddTenant /> */}
+        <Background />
       </div>
     </>
 
