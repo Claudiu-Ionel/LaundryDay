@@ -19,3 +19,9 @@
   position: relative;
   z-index: 100;
 }
+
+.cancel-module {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+}

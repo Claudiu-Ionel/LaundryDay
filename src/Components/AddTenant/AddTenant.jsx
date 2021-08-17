@@ -104,6 +104,13 @@ const AddTenant = ({ moduleState, setModuleState }) => {
         </section>
         <Button text={'Add Tenant'} className={'button blue'} />
         <section className="reg-section">{errMsg}</section>
+        <Button
+          text="X"
+          className={'button cancel-module'}
+          eventHandler={(e) => {
+            setModuleState(false);
+          }}
+        />
       </form>
     </div>
   );
