@@ -1,8 +1,3 @@
-.main {
-  width: 100vw;
-  height: 100vh;
-}
-
 /* backgrounds: */
 .winter {
   background-image: url('/src/img/backgrounds/aaron-burden-5AiWn2U10cw-unsplash.jpg');
@@ -31,28 +26,36 @@
 
 /* Time, date and the language block: */
 .timeDateLanguageContainer {
-  background-color: aquamarine;
   display: flex;
   justify-content: space-between;
+  font-size: 2.2rem;
+  font-weight: bold;
+}
+
+.timeDateLanguageContainer button {
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 7px;
+  border: 0;
+  color: #fff;
+  font-size: 1.45rem;
+  margin: 3px 3px 0 0;
+  width: 50px;
 }
 
 /* Photo author block: */
 .photoAuthorInfo {
-  border: red solid 3px;
-  display: flex;
-  position: absolute;
   bottom: 10px;
+  display: flex;
   left: 10px;
+  position: absolute;
 }
 
 .photoAuthorInfo p {
-  border: blueviolet dotted 2px;
   margin: 0;
   text-shadow: 2px -1px 7px #fff;
 }
 
 .photoAuthorInfo a {
-  border: dotted forestgreen 2px;
   display: flex;
   align-items: center;
   margin-left: 5px;

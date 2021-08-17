@@ -4,7 +4,7 @@ import './background.css';
 function Background() {
   // getting current date
   let today = new Date();
-  let months = [
+  const months = [
     'Janiari',
     'Februari',
     'Mars',
@@ -25,26 +25,58 @@ function Background() {
   let time = '';
 
   // changing backgrounds according to seasons:
-  let [seasonBackground, setSeasonBackground] = useState('winter');
-  function changeBackgrounds() {
-    if (month === 'December' || 'Januari' || 'Februari') {
-      setSeasonBackground('winter');
-    } else if (month === 'Mars' || 'April' || 'Mai') {
-      setSeasonBackground('spring');
-    } else if (month === 'Juni' || 'Juli' || 'Augusti') {
-      setSeasonBackground('summer');
-    } else {
-      setSeasonBackground('autumn');
-    }
-  }
-  console.log(seasonBackground);
+  const [seasonBackground, setSeasonBackground] = useState('main');
 
   useEffect(() => {
-    changeBackgrounds();
-  });
+    if (month === 'Mars' || month === 'April' || month === 'Mai') {
+      setSeasonBackground('spring');
+    } else if (month === 'Juni' || month === 'Juli' || month ==='Augusti') {
+      setSeasonBackground("summer");
+    } else if (month === 'September' || month === 'Oktober' || month === 'November') {
+      setSeasonBackground("autumn");
+    } else {
+      setSeasonBackground("winter");
+    }
+  }, [month]);
+
+  // setting links to background photo authors:
+  const authors = [
+    {
+      season: 'winter',
+      author: 'Aaron Burden',
+      link: 'https://unsplash.com/@aaronburden'
+    },
+    {
+      season: 'spring',
+      author: 'Ryan Stone',
+      link: 'https://unsplash.com/@rstone_design',
+    },
+    {
+      season: 'summer',
+      author: 'TJ Holowaychuk',
+      link: 'https://unsplash.com/@tjholowaychuk',
+    },
+    {
+      season: 'autumn',
+      author: 'Sora Sagano',
+      link: 'https://unsplash.com/@sorasagano',
+    },
+  ];
+
+  const [authorName, setAuthorName] = useState(null);
+  const [authorLink, setAuthorLink] = useState(null);
+ 
+  let authorQueries = authors.filter(o => o.season === seasonBackground);
+
+  useEffect(() => {
+    setAuthorName(authorQueries[0]?.author);
+    setAuthorLink(authorQueries[0]?.link);
+  }, [authorQueries]);
+  
+  
 
   return (
-    <div className="main">
+    <div className={seasonBackground}>
       <section className="timeDateLanguageContainer">
         <span class="showTime">Test</span>
         <span class="showDAte">{date}</span>
@@ -52,7 +84,7 @@ function Background() {
       </section>
       <section className="photoAuthorInfo">
         <p>Photo by </p>
-        <a href="m1.tv">ppppp</a>
+        <a href={authorLink}>{authorName}</a>
       </section>
     </div>
   );
