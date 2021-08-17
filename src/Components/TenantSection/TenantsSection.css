@@ -1,20 +1,68 @@
-#tenants-section {
-  width: 90%;
+#tenants-table {
+  width: 60%;
   background-color: rgba(196, 196, 196, 0.24);
   padding: 5px;
   margin-top: 100px;
+  position: relative;
 }
 
 .table-headers {
   display: flex;
   flex-direction: row;
-  width: fit-content;
+  justify-content: space-around;
+  width: 100%;
   padding: 10px;
+}
+.header-wrapper {
+  width: 25%;
+  display: flex;
+  justify-content: center;
 }
 .header {
   background-color: #35aafe;
   color: #fff;
   padding: 5px;
   min-width: 86px;
+  width: fit-content;
   margin-right: 10px;
+}
+
+.tenant {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 5px;
+  height: 45px;
+}
+
+.tenant-avatar {
+  width: 40px;
+  height: 40px;
+  padding: 2px;
+  border-radius: 50%;
+  position: absolute;
+  left: calc(25% - 25px);
+  background-color: #cccccc;
+  background-image: url('../../img/user.png');
+  background-size: cover;
+}
+
+.delete {
+  position: absolute;
+  background-color: rgb(252, 57, 57);
+  color: #fff;
+  right: 2%;
+}
+
+.avatar-name {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.details {
+  width: 25%;
 }
