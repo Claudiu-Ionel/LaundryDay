@@ -1,7 +1,7 @@
 #tenants-table {
   width: 60%;
   background-color: rgba(196, 196, 196, 0.24);
-  padding: 5px;
+  padding: 5px 5px 10px 5px;
   margin-top: 100px;
   position: relative;
 }
@@ -9,14 +9,14 @@
 .table-headers {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: flex-start;
   width: 100%;
   padding: 10px;
 }
 .header-wrapper {
-  width: 25%;
   display: flex;
   justify-content: center;
+  width: 25%;
 }
 .header {
   background-color: #35aafe;
@@ -24,37 +24,50 @@
   padding: 5px;
   min-width: 86px;
   width: fit-content;
-  margin-right: 10px;
+  margin-right: 20px;
 }
 
 .tenant {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
   padding: 5px;
   height: 45px;
-}
-
-.tenant-avatar {
-  width: 40px;
-  height: 40px;
-  padding: 2px;
-  border-radius: 50%;
   position: relative;
-  margin-right: 10px;
-  background-color: #cccccc;
-  background-image: url('../../img/user.png');
-  background-size: cover;
+}
+.tenant-details {
+  border: 1px solid transparent;
 }
 
-.delete {
-  position: absolute;
+.tenant:hover .delete-tenant {
+  display: flex;
+}
+.tenant-data {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.delete-tenant:hover + .tenant-details {
   background-color: rgb(252, 57, 57);
   color: #fff;
-  right: 2%;
 }
 
+.delete-tenant {
+  display: none;
+  position: absolute;
+
+  right: 20px;
+  top: 34px;
+  padding: 3px;
+}
+.red {
+  background-color: rgb(252, 57, 57);
+  color: #fff;
+}
+.black {
+  background-color: rgb(0, 0, 0);
+  color: #fff;
+}
 .avatar-name {
   position: relative;
   display: flex;
@@ -63,6 +76,9 @@
   justify-content: center;
 }
 
-.details {
-  width: 25%;
+.tenant-details {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  margin-right: 20px;
 }

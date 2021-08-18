@@ -1,4 +1,4 @@
-import React from 'react';
+import { React } from 'react';
 import Button from '../button/Button';
 import './TenantsSection.css';
 
@@ -31,36 +31,49 @@ const TenantSection = ({ data }) => {
     <div id="tenants-table">
       <div className="table-headers">
         <div className="header-wrapper">
-          <div className="header">Name</div>
+          <div className="header name">Name</div>
         </div>
         <div className="header-wrapper">
-          <div className="header">Apartment</div>
+          <div className="header apartment">Apartment</div>
         </div>
         <div className="header-wrapper">
-          <div className="header">Email</div>
+          <div className="header email">Email</div>
         </div>
         <div className="header-wrapper">
-          <div className="header">Id</div>
+          <div className="header id">Id</div>
         </div>
       </div>
       {data.map((tenant, index) => {
         const id = insert(tenant.id.toString(), 7, '-');
         return (
           <div index={tenant.name} className="tenant">
-            <div className="details avatar-name">
-              <div className="tenant-avatar"></div>
-              <div className="tenant-name">{tenant.name}</div>
-            </div>
-            <div className="details tenant-apartment">{tenant.apartment}</div>
-            <div className="details tenant-email">{tenant.email}</div>
-            <div className="details tenant-id">{id}</div>
             <Button
-              text="X"
+              text="Delete"
               eventHandler={(e) => {
                 console.log(e.target.parentElement);
               }}
-              className="button delete"
+              onMouseEnter={(e) => {
+                const tenant = e.target.nextElementSibling;
+                let buttonStyle = e.target.style;
+                tenant.style.backgroundColor = 'rgb(252, 57, 57)';
+                tenant.style.color = '#fff';
+                buttonStyle.backgroundColor = 'black';
+              }}
+              onMouseLeave={(e) => {
+                const tenant = e.target.nextElementSibling;
+                let buttonStyle = e.target.style;
+                tenant.style.backgroundColor = 'transparent';
+                tenant.style.color = 'black';
+                buttonStyle.backgroundColor = 'rgb(252, 57, 57)';
+              }}
+              className={'button delete-tenant red'}
             />
+            <div className="tenant-details">
+              <div className=" tenant-data tenant-name">{tenant.name}</div>
+              <div className=" tenant-data tenant-apartment">{tenant.apartment}</div>
+              <div className=" tenant-data tenant-email">{tenant.email}</div>
+              <div className=" tenant-data tenant-id">{id}</div>
+            </div>
           </div>
         );
       })}
