@@ -1,0 +1,61 @@
+.loginFormContainer {
+  align-items: center;
+  background-color: #000;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  opacity: 94%;
+  position: absolute;
+  top: 170px;
+  width: 700px;
+  z-index: 2;
+  justify-content: center;
+}
+
+/* Welcome text: */
+.welcome01,
+.welcome02 {
+  color: #fff;
+}
+
+.welcome01 {
+  font-size: 2.7rem;
+  font-weight: bolder;
+  margin: 10px 10px;
+}
+
+.welcome02 {
+  font-size: 1.9rem;
+  margin: 0 10px 10px 10px;
+}
+
+/* Username and password form: */
+.usernameAndPasswordForm {
+  display: flex;
+  flex-direction: column;
+}
+
+#username,
+#password {
+  height: 40px;
+  width: 350px;
+}
+
+#username {
+  margin: 10px auto;
+}
+
+#password {
+  margin-bottom: 10px;
+}
+
+.loginBtn {
+  width: 130px;
+  font-size: 1.2rem;
+  height: 40px;
+  color: #fff;
+  background-color: #000;
+  border-radius: 7px;
+  margin: 0 auto 10px auto;
+}
