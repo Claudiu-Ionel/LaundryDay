@@ -8,6 +8,7 @@ import AddTenant from './Components/AddTenant/AddTenant';
 // Front end components:
 import Background from './Components/FrontEnd/background/background';
 import LoginForm from './Components/FrontEnd/LoginForm/Login';
+import TimePicker from './Components/FrontEnd/TimePicker/TimePicker';
 function App() {
   return (
     <>
@@ -17,7 +18,8 @@ function App() {
         {/* <DBMS /> */}
 
         <Background />
-        <LoginForm />
+        {/* <LoginForm /> */}
+        <TimePicker />
       </div>
     </>
 

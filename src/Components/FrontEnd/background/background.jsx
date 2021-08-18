@@ -29,7 +29,13 @@ function Background() {
 
   useEffect(() => {
     let getTime = setTimeout(function () {
-      setHours(today.getHours());
+      // polishing hours:
+      let hrs = today.getHours();
+      if (hrs < 10) {
+        setHours("0"+hrs);
+      } else {
+        setHours(today.getHours());
+      }
       // polishing the minutes:
       let mins = today.getMinutes();
       if (mins < 10) {

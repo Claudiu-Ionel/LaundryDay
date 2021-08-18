@@ -1,0 +1,95 @@
+.timePickerContainer {
+  align-items: center;
+  background-color: #000;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  justify-content: center;
+  opacity: 94%;
+  position: absolute;
+  top: 110px;
+  width: 90vw;
+  z-index: 2;
+}
+
+.timePickerContainer h1,
+h2 {
+  color: #fff;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-top: 0;
+}
+
+/* Time slots picker: */
+.timePickerContainer article {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  width: 70%;
+}
+
+.timePickerContainer section {
+  width: 70%;
+}
+
+.finishBookingBtn {
+  background-color: transparent;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 1.8rem;
+  height: 100px;
+  width: auto;
+}
+
+/* Free time slots: */
+.ledig {
+  color: #fff;
+  display: flex;
+  height: 100px;
+  background-color: green;
+}
+
+.pickedTimeSlot {
+  align-items: center;
+  display: flex;
+  font-size: 3rem;
+  font-weight: bold;
+  justify-content: center;
+  margin: 0;
+  width: 70%;
+}
+
+.timeSlotStatus {
+  align-items: center;
+  display: flex;
+  font-size: 2rem;
+  font-weight: bold;
+  justify-content: center;
+  margin: 0;
+  width: 30%;
+}
+
+/* Booked time slots: */
+.bokad {
+  background-color: red;
+  color: #fff;
+  display: flex;
+  height: 100px;
+}
+
+.bokad .pickedTimeSlot {
+  font-size: 2rem;
+  font-weight: lighter;
+  text-decoration: line-through;
+  width: 50%;
+}
+
+.bokad .timeSlotStatus {
+  font-size: 3rem;
+  text-transform: uppercase;
+  width: 50%;
+}
