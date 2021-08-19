@@ -5,18 +5,18 @@ function Background() {
   // getting current date
   let today = new Date();
   const months = [
-    "Janiari",
-    "Februari",
-    "Mars",
-    "April",
-    "Mai",
-    "Juni",
-    "Juli",
-    "Augusti",
-    "September",
-    "Oktober",
-    "November",
-    "December",
+    "janiari",
+    "februari",
+    "mars",
+    "april",
+    "mai",
+    "juni",
+    "juli",
+    "augusti",
+    "september",
+    "oktober",
+    "november",
+    "december",
   ];
   let month = months[today.getMonth()];
   let date =
@@ -60,14 +60,14 @@ function Background() {
   const [seasonBackground, setSeasonBackground] = useState("main");
 
   useEffect(() => {
-    if (month === "Mars" || month === "April" || month === "Mai") {
+    if (month === "mars" || month === "april" || month === "mai") {
       setSeasonBackground("spring");
-    } else if (month === "Juni" || month === "Juli" || month === "Augusti") {
+    } else if (month === "juni" || month === "juli" || month === "augusti") {
       setSeasonBackground("summer");
     } else if (
-      month === "September" ||
-      month === "Oktober" ||
-      month === "November"
+      month === "september" ||
+      month === "oktober" ||
+      month === "november"
     ) {
       setSeasonBackground("autumn");
     } else {

@@ -6,14 +6,14 @@ function TimePicker() {
   const [bookingStatus, setBookingStatus] = useState("ledig");
 
   // changing slot styles when booked:
-//   useEffect(() => {
-//     setBookingStatus("bokad");
-//   }, []);
+  useEffect(() => {
+    setBookingStatus("bokad");
+  }, []);
 
   return (
     <div className="timePickerContainer">
       <h1>Du har valt datumet choosenDate. </h1>
-      <h2>Ange den lediga tiden som passar dig och tryck FORTSÄTT</h2>
+      <h2>Ange den lediga tid som passar dig och tryck FORTSÄTT</h2>
       <article>
         <section>
           <div className={bookingStatus}>
