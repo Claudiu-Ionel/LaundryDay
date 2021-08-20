@@ -2,8 +2,9 @@ import { useState, useRef } from 'react';
 import './AddTenant.css';
 import inputControl from '../../Functions/InputControl/InputControl';
 import Button from '../button/Button';
+import DropdownInput from '../Dropdown_input/Dropdown_input';
 
-const AddTenant = ({ moduleState, setModuleState }) => {
+const AddTenant = ({ moduleState, setModuleState, list }) => {
   const [firstName, setFirstName] = useState('');
   const [LastName, setLastName] = useState('');
   const [apartmentNr, setApartmentNr] = useState('');
@@ -11,6 +12,10 @@ const AddTenant = ({ moduleState, setModuleState }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errMsg, setErrMsg] = useState('');
+
+  const [city, setCity] = useState('');
+  const [street, setStreet] = useState('');
+
   const formRef = useRef(null);
   const firstNameRef = useRef(null);
   const LastNameRef = useRef(null);
@@ -68,7 +73,29 @@ const AddTenant = ({ moduleState, setModuleState }) => {
             onChange={(e) => inputControl(e, setLastName, LastNameRef, setErrMsg)}
           />
         </section>
-        <h2>Tenant Account</h2>
+
+        <section className="reg-section">
+          <DropdownInput
+            placeholder="Select Street..."
+            choiceList={list}
+            state={street}
+            setState={setStreet}
+          />
+          <DropdownInput
+            placeholder="Select apartment..."
+            choiceList={list}
+            state={apartmentNr}
+            setState={setApartmentNr}
+          />
+          <DropdownInput
+            placeholder="Select city..."
+            choiceList={list}
+            state={city}
+            setState={setCity}
+          />
+        </section>
+
+        {/* <h2>Tenant Account</h2>
         <section className="reg-section">
           <label htmlFor="username">Username: </label>
           <input
@@ -101,7 +128,7 @@ const AddTenant = ({ moduleState, setModuleState }) => {
             ref={passwordRef}
             onChange={(e) => inputControl(e, setPassword, passwordRef, setErrMsg)}
           />
-        </section>
+        </section> */}
         <Button text={'Add Tenant'} className={'button blue'} />
         <section className="reg-section">{errMsg}</section>
         <Button

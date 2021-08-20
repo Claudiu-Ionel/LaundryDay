@@ -19,7 +19,9 @@
   position: relative;
   z-index: 100;
 }
-
+#addTenant-form h2 {
+  color: black;
+}
 .cancel-module {
   position: absolute;
   top: 20px;

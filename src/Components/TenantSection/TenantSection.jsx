@@ -14,15 +14,15 @@ const TenantSection = ({ data }) => {
       id: 197506952241,
     },
     {
-      name: 'Bob Junior',
+      name: 'Mickey Mouse',
       apartment: 1202,
-      email: 'bob@gmail.com',
+      email: 'mickey@gmail.com',
       id: 197506952241,
     },
     {
-      name: 'Bob Junior',
+      name: 'Bad Joe',
       apartment: 1202,
-      email: 'bob@gmail.com',
+      email: 'Joe@gmail.com',
       id: 197506952241,
     },
   ];
@@ -46,25 +46,29 @@ const TenantSection = ({ data }) => {
       {data.map((tenant, index) => {
         const id = insert(tenant.id.toString(), 7, '-');
         return (
-          <div index={tenant.name} className="tenant">
+          <div key={index} className="tenant">
             <Button
               text="Delete"
               eventHandler={(e) => {
                 console.log(e.target.parentElement);
               }}
               onMouseEnter={(e) => {
+                e.stopPropagation();
                 const tenant = e.target.nextElementSibling;
-                let buttonStyle = e.target.style;
+                let button = e.target;
                 tenant.style.backgroundColor = 'rgb(252, 57, 57)';
                 tenant.style.color = '#fff';
-                buttonStyle.backgroundColor = 'black';
+                button.classList.add('black');
+                button.classList.remove('red');
               }}
               onMouseLeave={(e) => {
+                e.stopPropagation();
                 const tenant = e.target.nextElementSibling;
-                let buttonStyle = e.target.style;
+                let button = e.target;
                 tenant.style.backgroundColor = 'transparent';
                 tenant.style.color = 'black';
-                buttonStyle.backgroundColor = 'rgb(252, 57, 57)';
+                button.classList.remove('black');
+                button.classList.add('red');
               }}
               className={'button delete-tenant red'}
             />

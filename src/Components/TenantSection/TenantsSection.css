@@ -56,17 +56,20 @@
   display: none;
   position: absolute;
 
-  right: 20px;
-  top: 34px;
-  padding: 3px;
+  right: 3%;
+  top: calc(50% - 12px);
+  padding: 5px;
 }
 .red {
   background-color: rgb(252, 57, 57);
   color: #fff;
 }
 .black {
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(0, 0, 0) !important;
   color: #fff;
+}
+.black:active {
+  background-color: rgba(0, 0, 0, 0.563);
 }
 .avatar-name {
   position: relative;

@@ -65,7 +65,7 @@ export default function DBMS() {
         <Button text={'Show tenants'} eventHandler={showTenant} className={'button blue'}></Button>
       </form>
       <TenantSection />
-      <AddTenant moduleState={showAddTenant} setModuleState={setShowAddTenant} />
+      <AddTenant list={list} moduleState={showAddTenant} setModuleState={setShowAddTenant} />
     </>
   );
 }

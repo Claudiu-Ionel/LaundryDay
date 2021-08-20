@@ -25,7 +25,7 @@ db.connect((err) => {
 })
 
 
-app.post('/login', (req, res) => {
+app.post('/addTenant', (req, res) => {
   const { username, password } = req.body;
   db.query('SELECT username from admins a WHERE a.username = ? AND a.password = ?;', [username, password], (err, result) => {
     if (err) {

@@ -15,11 +15,11 @@ function App() {
       <div className="App">
         {/* <RegistrationDBMS /> */}
         {/* <LoginDBMS /> */}
-        {/* <DBMS /> */}
+        <DBMS />
 
-        <Background />
+        {/* <Background /> */}
         {/* <LoginForm /> */}
-        <TimePicker />
+        {/* <TimePicker /> */}
       </div>
     </>
 
