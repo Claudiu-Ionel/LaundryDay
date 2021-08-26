@@ -4,7 +4,6 @@ const inputControl = (e, setState, ref, setErrMsg) => {
   const valueLength = ref.current.value.length;
   const conditions = [' ', ';', '+', '-', '='];
   const rejectionStatement = conditions.some((el) => inputValue.includes(el));
-
   if (rejectionStatement) {
     ref.current.value = null;
     input.style.outlineColor = 'red';

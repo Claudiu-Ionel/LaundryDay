@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import Axios from 'axios';
 import './DBMS.css';
 import inputControl from '../../Functions/InputControl/InputControl';
+require('dotenv').config({ path: '../../../.env' });
 
 const Registration_DBMS = () => {
   // const [regButtonOn, setRegButtonOn] = useState(false);
@@ -12,23 +13,50 @@ const Registration_DBMS = () => {
   const regRef = useRef(null);
   const emailRef = useRef(null);
   const passRef = useRef(null);
+  const formRef = useRef(null);
+  const url = process.env.REACT_APP_DB_URL;
+  const host = process.env.REACT_APP_DB_HOST;
+  const getAdmin = async (e) => {
+    e.preventDefault();
+    const headers = new Headers();
+    try {
+      await Axios({
+        method: 'post',
+        url: `http://localhost:3001/getAdmin`,
+        // data: {
+        //   username: username,
+        //   email: email,
+        //   password: password,
+        // },
+        // headers: headers,
+      }).then((response) => {
+        console.log(response.data);
+        // const errNo = response.data?.errno;
 
-  const clearInputValues = () => {
-    const inputs = document.querySelectorAll('input');
-    const inputsArray = [...inputs];
-    inputsArray.map((input) => {
-      return (input.value = null);
-    });
+        // if (response.data === 'User registered') {
+        //   setErrMsg('User Registered');
+        // }
+        // if (errNo === 1062) {
+        //   setErrMsg('Username already exists');
+        // }
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
-
   const registerHandler = async (e) => {
     e.preventDefault();
-
+    const headers = new Headers();
     try {
-      await Axios.post('http://localhost:3001/register', {
-        username: username,
-        email: email,
-        password: password,
+      await Axios({
+        method: 'post',
+        url: `http://localhost:3001/registerAdmin`,
+        data: {
+          username: username,
+          email: email,
+          password: password,
+        },
+        headers: headers,
       }).then((response) => {
         setUsername(null);
         setEmail(null);
@@ -36,24 +64,21 @@ const Registration_DBMS = () => {
 
         const errNo = response.data?.errno;
 
-        if (response.data === 'User registered') {
-          setErrMsg('User Registered');
+        if (response.data === 'Admin Registered') {
+          setErrMsg('Admin Registered');
         }
-        if (errNo === 1062) {
-          setErrMsg('Username already exists');
-        }
-        if (errNo === 1048) {
-          setErrMsg('Please fill all the inputs fields');
+        if (errNo === 'ER_DUP_ENTRY') {
+          setErrMsg('Username already exists!');
         }
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
-    clearInputValues();
+    formRef.current.reset();
   };
 
   return (
-    <form onSubmit={(e) => registerHandler(e)} id="registration-form">
+    <form ref={formRef} onSubmit={(e) => registerHandler(e)} id="registration-form">
       <h2>Registration form</h2>
       <section className="reg-section">
         <label htmlFor="username">Username: </label>
@@ -63,6 +88,9 @@ const Registration_DBMS = () => {
           id="reg-username"
           required
           ref={regRef}
+          onBlur={(e) => {
+            e.target.style.outlineColor = 'rgb(59, 59, 59)';
+          }}
           onChange={(e) => {
             inputControl(e, setUsername, regRef, setErrMsg);
           }}
@@ -79,6 +107,9 @@ const Registration_DBMS = () => {
           onChange={(e) => {
             inputControl(e, setEmail, emailRef, setErrMsg);
           }}
+          onBlur={(e) => {
+            e.target.style.outlineColor = 'rgb(59, 59, 59)';
+          }}
         />
       </section>
       <section className="reg-section">
@@ -92,9 +123,13 @@ const Registration_DBMS = () => {
           onChange={(e) => {
             inputControl(e, setPassword, passRef, setErrMsg);
           }}
+          onBlur={(e) => {
+            e.target.style.outlineColor = 'rgb(59, 59, 59)';
+          }}
         />
       </section>
       <button className="button">Register </button>
+      <button onClick={(e) => getAdmin(e)}>get admin</button>
       <section className="reg-section">{errMsg}</section>
     </form>
   );
