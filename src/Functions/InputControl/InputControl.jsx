@@ -2,7 +2,7 @@ const inputControl = (e, setState, ref, setErrMsg) => {
   let input = ref.current;
   let inputValue = ref.current.value;
   const valueLength = ref.current.value.length;
-  const conditions = [' ', ';', '+', '-', '='];
+  const conditions = [' ', ';', '+', '-', '=', '!', '`', '%'];
   const rejectionStatement = conditions.some((el) => inputValue.includes(el));
   if (rejectionStatement) {
     ref.current.value = null;

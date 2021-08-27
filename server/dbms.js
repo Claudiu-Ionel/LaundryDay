@@ -2,10 +2,8 @@
 const cors = require('cors');
 const mysql = require('mysql2');
 const express = require('express');
+const { CgArrowLongRight } = require('react-icons/cg');
 const app = express();
-
-const url = process.env.REACT_APP_DB_url;
-const host = process.env.REACT_APP_DB_HOST
 
 app.use(express.json());
 
@@ -62,5 +60,17 @@ app.post(`/registerAdmin`, (req, res) => {
   })
 })
 
+app.post(`/loginAdmin`, (req, res) => {
+  const { username, password } = req.body;
+  db.query('SELECT id, username from admins a WHERE a.username = ? AND a.password = ?;', [username, password], (err, result) => {
+    if (err) {
+      res.send(err);
+      res.end()
+    } else {
+      res.send(result)
+      res.end()
+    }
+  })
+})
 
 app.listen(3001)

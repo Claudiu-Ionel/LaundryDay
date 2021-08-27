@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+import { createContext, useContext, useState } from 'react';
 import './App.css';
 // Back end components:
 import RegistrationDBMS from './pages/DBMS/Registration_DBMS.jsx'
@@ -9,20 +9,44 @@ import AddTenant from './Components/AddTenant/AddTenant';
 import Background from './Components/FrontEnd/background/background';
 import LoginForm from './Components/FrontEnd/LoginForm/Login';
 import TimePicker from './Components/FrontEnd/TimePicker/TimePicker';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from 'react-router-dom'
+
+export const AppContext = createContext();
+
+export function useGlobalState() {
+  const globalState = useContext(AppContext);
+
+  return globalState;
+}
+
 function App() {
+  const [admin, setAdmin] = useState({ id: null, username: null });
+
+  const globalState = {
+    admin,
+    setAdmin,
+  }
   return (
     <>
       <div className="App">
-        {/* <RegistrationDBMS /> */}
-        {/* <LoginDBMS /> */}
-        <DBMS />
-
-        {/* <Background /> */}
-        {/* <LoginForm /> */}
-        {/* <TimePicker /> */}
+        <AppContext.Provider value={globalState}>
+          <Router>
+            <Switch>
+              <Route path="/DBMS">
+                <DBMS />
+              </Route>
+              <Route path="/">
+                <LoginDBMS />
+              </Route>
+            </Switch>
+          </Router>
+        </AppContext.Provider>
       </div>
     </>
-
   );
 }
 

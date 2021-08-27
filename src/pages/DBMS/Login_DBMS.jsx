@@ -1,53 +1,48 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useGlobalState } from '../../App';
 import Axios from 'axios';
+import inputControl from '../../Functions/InputControl/InputControl';
 import './DBMS.css';
 const Login_DBMS = () => {
-  // const [regButtonOn, setRegButtonOn] = useState(false);
+  const history = useHistory();
+  const globalState = useGlobalState();
+  const setAdmin = globalState.setAdmin;
   const [logUsername, setLogUsername] = useState(null);
   const [logPassword, setLogPassword] = useState(null);
   const [errMsg, setErrMsg] = useState('');
-
-  const inputControl = (e, setState) => {
-    let input = e.target.value;
-    const conditions = [' ', ';', '+', '-', '='];
-    const rejectionStatement = conditions.some((el) => input.includes(el));
-    if (rejectionStatement) {
-      e.target.value = null;
-      setState(null);
-      setErrMsg(`Please do not use: space, ';', '+', '-', '='`);
-    } else {
-      setState(input);
-      setErrMsg(``);
-    }
-  };
-  const clearInputValues = () => {
-    const inputs = document.querySelectorAll('input');
-    const inputsArray = [...inputs];
-    inputsArray.map((input) => {
-      return (input.value = null);
-    });
-  };
+  const userNameRef = useRef(null);
+  const passRef = useRef(null);
+  const formRef = useRef(null);
 
   const loginHandler = async (e) => {
     e.preventDefault();
-
     try {
-      await Axios.post('http://localhost:3001/login', {
-        username: logUsername,
-        password: logPassword,
-      }).then((response) => {
-        setErrMsg(response.data);
-        setLogUsername(null);
-        setLogPassword(null);
+      const request = await Axios({
+        method: 'post',
+        url: 'http://localhost:3001/loginAdmin',
+        data: {
+          username: logUsername,
+          password: logPassword,
+        },
       });
+      const requestData = request?.data;
+      const dataObj = request?.data[0];
+      if (requestData.length > 0 && 'id' in dataObj) {
+        setAdmin({ id: dataObj.id, username: dataObj.username });
+        formRef.current.reset();
+        history.push('/DBMS');
+      } else {
+        formRef.current.reset();
+        setErrMsg('username/password wrong');
+      }
     } catch (error) {
       console.log(error);
     }
-    clearInputValues();
   };
 
   return (
-    <form onSubmit={(e) => loginHandler(e)} id="login-form">
+    <form ref={formRef} onSubmit={(e) => loginHandler(e)} id="login-form">
       <h2>ADMINS</h2>
       <section className="login-section">
         <label htmlFor="username">Username: </label>
@@ -55,9 +50,13 @@ const Login_DBMS = () => {
           type="text"
           name="username"
           id="log-username"
+          ref={userNameRef}
           required
+          onBlur={(e) => {
+            e.target.style.outlineColor = 'rgb(59, 59, 59)';
+          }}
           onChange={(e) => {
-            inputControl(e, setLogUsername);
+            inputControl(e, setLogUsername, userNameRef, setErrMsg);
           }}
         />
       </section>
@@ -67,9 +66,13 @@ const Login_DBMS = () => {
           type="password"
           name="password"
           id="log-password"
+          ref={passRef}
           required
+          onBlur={(e) => {
+            e.target.style.outlineColor = 'rgb(59, 59, 59)';
+          }}
           onChange={(e) => {
-            inputControl(e, setLogPassword);
+            inputControl(e, setLogPassword, passRef, setErrMsg);
           }}
         />
       </section>

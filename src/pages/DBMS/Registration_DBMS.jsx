@@ -10,43 +10,14 @@ const Registration_DBMS = () => {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [errMsg, setErrMsg] = useState('');
-  const regRef = useRef(null);
+  const userNameRef = useRef(null);
   const emailRef = useRef(null);
   const passRef = useRef(null);
   const formRef = useRef(null);
-  const url = process.env.REACT_APP_DB_URL;
-  const host = process.env.REACT_APP_DB_HOST;
-  const getAdmin = async (e) => {
-    e.preventDefault();
-    const headers = new Headers();
-    try {
-      await Axios({
-        method: 'post',
-        url: `http://localhost:3001/getAdmin`,
-        // data: {
-        //   username: username,
-        //   email: email,
-        //   password: password,
-        // },
-        // headers: headers,
-      }).then((response) => {
-        console.log(response.data);
-        // const errNo = response.data?.errno;
 
-        // if (response.data === 'User registered') {
-        //   setErrMsg('User Registered');
-        // }
-        // if (errNo === 1062) {
-        //   setErrMsg('Username already exists');
-        // }
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  };
   const registerHandler = async (e) => {
     e.preventDefault();
-    const headers = new Headers();
+    // const headers = new Headers();
     try {
       await Axios({
         method: 'post',
@@ -56,18 +27,19 @@ const Registration_DBMS = () => {
           email: email,
           password: password,
         },
-        headers: headers,
+        // headers: headers,
       }).then((response) => {
         setUsername(null);
         setEmail(null);
         setPassword(null);
 
-        const errNo = response.data?.errno;
+        const errNo = response.data?.code;
 
         if (response.data === 'Admin Registered') {
           setErrMsg('Admin Registered');
         }
         if (errNo === 'ER_DUP_ENTRY') {
+          console.log(response);
           setErrMsg('Username already exists!');
         }
       });
@@ -87,12 +59,12 @@ const Registration_DBMS = () => {
           name="username"
           id="reg-username"
           required
-          ref={regRef}
+          ref={userNameRef}
           onBlur={(e) => {
             e.target.style.outlineColor = 'rgb(59, 59, 59)';
           }}
           onChange={(e) => {
-            inputControl(e, setUsername, regRef, setErrMsg);
+            inputControl(e, setUsername, userNameRef, setErrMsg);
           }}
         />
       </section>
@@ -128,8 +100,7 @@ const Registration_DBMS = () => {
           }}
         />
       </section>
-      <button className="button">Register </button>
-      <button onClick={(e) => getAdmin(e)}>get admin</button>
+      <button className="button blue">Register </button>
       <section className="reg-section">{errMsg}</section>
     </form>
   );
