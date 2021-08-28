@@ -3,6 +3,7 @@ const cors = require('cors');
 const mysql = require('mysql2');
 const express = require('express');
 const { CgArrowLongRight } = require('react-icons/cg');
+const { logRoles } = require('@testing-library/react');
 const app = express();
 
 app.use(express.json());
@@ -66,9 +67,11 @@ app.post(`/loginAdmin`, (req, res) => {
     if (err) {
       res.send(err);
       res.end()
+      console.log(username, password);
     } else {
       res.send(result)
       res.end()
+      console.log(username, password);
     }
   })
 })
