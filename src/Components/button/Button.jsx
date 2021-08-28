@@ -4,18 +4,7 @@ const Button = ({ text, eventHandler, className, onMouseEnter, onMouseLeave }) =
   const cancelFunc = () => {
     return;
   };
-  // (function checkParameters() {
 
-  // })();
-  // if (eventHandler) {
-  //   return (
-  //     <button className={className} onClick={(e) => eventHandler(e)}>
-  //       {text}
-  //     </button>
-  //   );
-  // } else {
-  //   return <button className={className}>{text}</button>;
-  // }
   return (
     <button
       className={className}
