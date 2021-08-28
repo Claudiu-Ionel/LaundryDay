@@ -20,7 +20,7 @@ const Login_DBMS = () => {
     try {
       const request = await Axios({
         method: 'post',
-        url: 'http://localhost:3001/loginAdmin',
+        url: '/loginAdmin',
         data: {
           username: logUsername,
           password: logPassword,
