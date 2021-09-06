@@ -12,10 +12,10 @@ const Dropdown_input = ({ placeholder, choiceList, state, setState }) => {
         value={state}
       />
       <div className="choice-list">
-        {choiceList.map((item, index) => {
+        {choiceList?.map((item, index) => {
           return (
-            <span onClick={(e) => setState(e.target.innerHTML)} key={item}>
-              {item}
+            <span onClick={(e) => setState(e.target.innerHTML)} key={item?.name || item?.number}>
+              {item.name ? item.name : item.number}
             </span>
           );
         })}

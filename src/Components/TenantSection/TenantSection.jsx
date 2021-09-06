@@ -6,27 +6,7 @@ const TenantSection = ({ data }) => {
   function insert(str, index, value) {
     return str.substr(0, index) + value + str.substr(index);
   }
-  const userData = [
-    {
-      name: 'Bob Junior',
-      apartment: 1202,
-      email: 'bob@gmail.com',
-      id: 197506952241,
-    },
-    {
-      name: 'Mickey Mouse',
-      apartment: 1202,
-      email: 'mickey@gmail.com',
-      id: 197506952241,
-    },
-    {
-      name: 'Bad Joe',
-      apartment: 1202,
-      email: 'Joe@gmail.com',
-      id: 197506952241,
-    },
-  ];
-  data = userData;
+
   return (
     <div id="tenants-table">
       <div className="table-headers">
@@ -44,7 +24,7 @@ const TenantSection = ({ data }) => {
         </div>
       </div>
       {data.map((tenant, index) => {
-        const id = insert(tenant.id.toString(), 7, '-');
+        // const id = insert(tenant.id.toString(), 7, '-');
         return (
           <div key={index} className="tenant">
             <Button
@@ -73,10 +53,12 @@ const TenantSection = ({ data }) => {
               className={'button delete-tenant red'}
             />
             <div className="tenant-details">
-              <div className=" tenant-data tenant-name">{tenant.name}</div>
-              <div className=" tenant-data tenant-apartment">{tenant.apartment}</div>
-              <div className=" tenant-data tenant-email">{tenant.email}</div>
-              <div className=" tenant-data tenant-id">{id}</div>
+              <div className=" tenant-data tenant-name">
+                {tenant.first_name} {tenant.second_name}
+              </div>
+              <div className=" tenant-data tenant-apartment">{tenant.apartment_number}</div>
+              <div className=" tenant-data tenant-email">{tenant.id}</div>
+              <div className=" tenant-data tenant-id">{tenant.personal_number}</div>
             </div>
           </div>
         );

@@ -5,6 +5,7 @@ import Axios from 'axios';
 import inputControl from '../../Functions/InputControl/InputControl';
 import './DBMS.css';
 const Login_DBMS = () => {
+  const host = process.env.REACT_APP_DB_HOST;
   const history = useHistory();
   const globalState = useGlobalState();
   const setAdmin = globalState.setAdmin;
@@ -20,12 +21,13 @@ const Login_DBMS = () => {
     try {
       const request = await Axios({
         method: 'post',
-        url: '/loginAdmin',
+        url: `http://localhost:3001/loginAdmin`,
         data: {
           username: logUsername,
           password: logPassword,
         },
       });
+
       const requestData = request?.data;
       const dataObj = request?.data[0];
       if (requestData.length > 0 && 'id' in dataObj) {
@@ -34,7 +36,7 @@ const Login_DBMS = () => {
         history.push('/DBMS');
       } else {
         formRef.current.reset();
-        setErrMsg('username/password wrong');
+        setErrMsg('wrong username/password');
       }
     } catch (error) {
       console.log(error);
