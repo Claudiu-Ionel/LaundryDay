@@ -32,7 +32,7 @@ function Background() {
       // polishing hours:
       let hrs = today.getHours();
       if (hrs < 10) {
-        setHours("0"+hrs);
+        setHours("0" + hrs);
       } else {
         setHours(today.getHours());
       }
