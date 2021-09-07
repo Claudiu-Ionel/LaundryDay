@@ -115,7 +115,7 @@ app.get('/showTenants/:city/:street/:building', (req, res) => {
   INNER JOIN streets s ON s.id = b.street_id
   inner JOIN cities c ON c.id = s.city_id
   WHERE c.name= ? AND s.name = ? AND b.number = ?;`
-  console.log(query);
+
   db.query(query, [city, street, building], (err, result) => {
     if (err) {
       res.send(err)
