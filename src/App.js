@@ -22,7 +22,9 @@ export function useGlobalState() {
 
 function App() {
   const [admin, setAdmin] = useState({ id: null, username: null });
-
+  const [cities, setCities] = useState([]);
+  const [streets, setStreets] = useState([]);
+  const [buildings, setBuildings] = useState([]);
   const globalState = {
     admin,
     setAdmin,

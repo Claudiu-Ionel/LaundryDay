@@ -3,16 +3,17 @@ const cors = require('cors');
 const mysql = require('mysql2');
 const express = require('express');
 const { CgArrowLongRight } = require('react-icons/cg');
-const { logRoles } = require('@testing-library/react');
 const app = express();
 
 app.use(express.json());
 
-require('dotenv').config({ path: '../.env' });
+require('dotenv').config({ path: '../local.env' });
 
 app.use(cors({ origin: '*', credentials: true }));
 // app.use(function (req, res, next) {
-
+const host = process.env.REACT_APP_DB_HOST;
+const user = process.env.REACT_APP_DB_USER;
+const pass = process.env.REACT_APP_DB_PASS;
 //   res.header('Access-Control-Allow-Origin', "http://localhost:3000");
 //   res.header('Access-Control-Allow-Headers', true);
 //   res.header('Access-Control-Allow-Credentials', true);
@@ -21,11 +22,10 @@ app.use(cors({ origin: '*', credentials: true }));
 // });
 
 const db = mysql.createConnection({
-  host: process.env.REACT_APP_DB_HOST,
-  user: process.env.REACT_APP_DB_USER,
-  password: process.env.REACT_APP_DB_PASS,
-  database: 'dudu',
-  port: 3306,
+  host: 'localhost',
+  user: user,
+  password: pass,
+  database: 'dbms',
 })
 
 db.connect((err) => {
@@ -40,7 +40,7 @@ db.connect((err) => {
 
 app.post(`/getAdmin`, (req, res) => {
   // const { username, email, password } = req.body;
-  db.query('Select id, username, email from dudu.admins;', (err, result) => {
+  db.query('Select id, username, email from dbms.admins;', (err, result) => {
     if (err) {
       res.send(err);
     } else {
@@ -66,12 +66,61 @@ app.post(`/loginAdmin`, (req, res) => {
   db.query('SELECT id, username from admins a WHERE a.username = ? AND a.password = ?;', [username, password], (err, result) => {
     if (err) {
       res.send(err);
-      res.end()
-      console.log(username, password);
+      res.end();
+
     } else {
       res.send(result)
-      res.end()
-      console.log(username, password);
+      res.end();
+      console.log(`admin "${username}" logged in!`);
+    }
+  })
+})
+
+app.get('/getCities', (req, res) => {
+  db.query('SELECT * from cities', (err, result) => {
+    if (err) {
+      res.send(err)
+    } else {
+      res.send(result)
+    }
+  })
+})
+
+app.get('/getStreets', (req, res) => {
+  db.query('SELECT * from streets', (err, result) => {
+    if (err) {
+      res.send(err)
+    } else {
+      res.send(result)
+    }
+  })
+})
+
+app.get('/getBuildings', (req, res) => {
+  db.query('SELECT * from buildings', (err, result) => {
+    if (err) {
+      res.send(err)
+    } else {
+      res.send(result)
+    }
+  })
+})
+
+app.get('/showTenants/:city/:street/:building', (req, res) => {
+  const { city, street, building } = req.params;
+  console.log(city, street, building);
+  const query = `SELECT t.id, t.first_name, t.second_name, t.personal_number, a.number as apartment_number, b.number as building_number from tenants t
+  INNER JOIN apartments a ON a.id = t.apartment_id
+  INNER JOIN buildings b ON b.id = t.building_id
+  INNER JOIN streets s ON s.id = b.street_id
+  inner JOIN cities c ON c.id = s.city_id
+  WHERE c.name= ? AND s.name = ? AND b.number = ?;`
+
+  db.query(query, [city, street, building], (err, result) => {
+    if (err) {
+      res.send(err)
+    } else {
+      res.send(result)
     }
   })
 })

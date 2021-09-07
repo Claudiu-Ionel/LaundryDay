@@ -3,8 +3,9 @@ import './AddTenant.css';
 import inputControl from '../../Functions/InputControl/InputControl';
 import Button from '../button/Button';
 import DropdownInput from '../Dropdown_input/Dropdown_input';
+import { useGlobalState } from '../../App';
 
-const AddTenant = ({ moduleState, setModuleState, list }) => {
+const AddTenant = ({ moduleState, setModuleState }) => {
   const [firstName, setFirstName] = useState('');
   const [LastName, setLastName] = useState('');
   const [apartmentNr, setApartmentNr] = useState('');
@@ -12,7 +13,7 @@ const AddTenant = ({ moduleState, setModuleState, list }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errMsg, setErrMsg] = useState('');
-
+  const globalState = useGlobalState();
   const [city, setCity] = useState('');
   const [street, setStreet] = useState('');
 
@@ -23,6 +24,14 @@ const AddTenant = ({ moduleState, setModuleState, list }) => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
 
+  //CONTEXT VARIABLES
+  const cities = globalState.cities;
+  const setCities = globalState.setCities;
+  const streets = globalState.streets;
+  const setStreets = globalState.setStreets;
+  const buildings = globalState.buildings;
+  const setBuildings = globalState.setBuildings;
+  //=============================================
   const tenantToAdd = {
     firstName,
     LastName,
@@ -77,19 +86,19 @@ const AddTenant = ({ moduleState, setModuleState, list }) => {
         <section className="reg-section">
           <DropdownInput
             placeholder="Select Street..."
-            choiceList={list}
+            choiceList={streets}
             state={street}
             setState={setStreet}
           />
           <DropdownInput
             placeholder="Select apartment..."
-            choiceList={list}
+            choiceList={buildings}
             state={apartmentNr}
             setState={setApartmentNr}
           />
           <DropdownInput
             placeholder="Select city..."
-            choiceList={list}
+            choiceList={cities}
             state={city}
             setState={setCity}
           />
