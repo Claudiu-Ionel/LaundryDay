@@ -1,0 +1,45 @@
+/* The calendar element: */
+.react-calendar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+  top: 100px;
+}
+
+/* the GLOBAL day tiles: */
+.react-calendar__tile {
+  border: red 3px solid;
+}
+
+.react-calendar__month-view__days__day {
+  background: #000;
+  font-size: 3rem;
+  height: 80px;
+  color: #fff;
+}
+
+/* days of week tiles: */
+.react-calendar__month-view__weekdays__weekday {
+  background: yellowgreen;
+  display: flex;
+  font-size: 1.4rem;
+  justify-content: center;
+}
+
+/* month/year tile: */
+.react-calendar__navigation__label {
+  font-size: 2rem;
+  background: pink;
+}
+
+/* nav arrows tiles: */
+.react-calendar__navigation__arrow {
+  color: #fff;
+  font-size: 2rem;
+  background: #000;
+  width: 50px;
+  height: 50px;
+}
