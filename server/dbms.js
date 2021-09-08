@@ -105,6 +105,15 @@ app.get('/getBuildings', (req, res) => {
     }
   })
 })
+app.get('/getApartments', (req, res) => {
+  db.query('SELECT * from apartments', (err, result) => {
+    if (err) {
+      res.send(err)
+    } else {
+      res.send(result)
+    }
+  })
+})
 
 app.get('/showTenants/:city/:street/:building', (req, res) => {
   const { city, street, building } = req.params;

@@ -30,12 +30,13 @@ export default function DBMS() {
   const setStreets = globalState.setStreets;
   const buildings = globalState.buildings;
   const setBuildings = globalState.setBuildings;
+  const setApartments = globalState.setApartments;
   //=============================================
 
   // TENANTS DATA ===============================
   const [tenantData, setTenantData] = useState([]);
   //=============================================
-
+  console.log(cities, streets);
   //USE EFFECT ==================================
   useEffect(() => {
     const getData = async () => {
@@ -43,19 +44,22 @@ export default function DBMS() {
         const citiesCall = await Axios.get('http://localhost:3001/getCities');
         const streetsCall = await Axios.get('http://localhost:3001/getStreets');
         const buildingsCall = await Axios.get('http://localhost:3001/getBuildings');
+        const apartmentsCall = await Axios.get('http://localhost:3001/getApartments');
 
         const citiesData = citiesCall.data;
         const streetsData = streetsCall.data;
         const buildingsData = buildingsCall.data;
+        const apartmentsData = apartmentsCall.data;
         setCities(citiesData);
         setStreets(streetsData);
         setBuildings(buildingsData);
+        setApartments(apartmentsData);
       } catch (err) {
         console.log(err);
       }
     };
     getData();
-  }, [setCities, setStreets, setBuildings]);
+  }, [setCities, setStreets, setBuildings, setApartments]);
   //==============================================
 
   // FUNCTIONS ===================================

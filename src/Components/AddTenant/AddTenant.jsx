@@ -8,15 +8,15 @@ import { useGlobalState } from '../../App';
 const AddTenant = ({ moduleState, setModuleState }) => {
   const [firstName, setFirstName] = useState('');
   const [LastName, setLastName] = useState('');
-  const [apartmentNr, setApartmentNr] = useState('');
-  const [userName, setUserName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  // const [userName, setUserName] = useState('');
+  // const [email, setEmail] = useState('');
+  // const [password, setPassword] = useState('');
   const [errMsg, setErrMsg] = useState('');
   const globalState = useGlobalState();
   const [city, setCity] = useState('');
   const [street, setStreet] = useState('');
-
+  const [building, setBuilding] = useState('');
+  const [apartment, setApartment] = useState('');
   const formRef = useRef(null);
   const firstNameRef = useRef(null);
   const LastNameRef = useRef(null);
@@ -26,19 +26,17 @@ const AddTenant = ({ moduleState, setModuleState }) => {
 
   //CONTEXT VARIABLES
   const cities = globalState.cities;
-  const setCities = globalState.setCities;
   const streets = globalState.streets;
-  const setStreets = globalState.setStreets;
   const buildings = globalState.buildings;
-  const setBuildings = globalState.setBuildings;
+  const apartments = globalState.apartments;
   //=============================================
   const tenantToAdd = {
     firstName,
     LastName,
-    apartmentNr,
-    userName,
-    email,
-    password,
+    // apartmentNr,
+    // userName,
+    // email,
+    // password,
   };
   const addTenant = (e) => {
     e.preventDefault();
@@ -48,7 +46,7 @@ const AddTenant = ({ moduleState, setModuleState }) => {
   if (!moduleState) {
     return <></>;
   }
-
+  console.log(city);
   return (
     <div
       className="cover"
@@ -85,22 +83,31 @@ const AddTenant = ({ moduleState, setModuleState }) => {
 
         <section className="reg-section">
           <DropdownInput
+            placeholder="Select city..."
+            choiceList={cities}
+            state={city}
+            setState={setCity}
+          />
+          <DropdownInput
+            disabled={!city}
             placeholder="Select Street..."
             choiceList={streets}
             state={street}
             setState={setStreet}
           />
           <DropdownInput
-            placeholder="Select apartment..."
+            disabled={!street}
+            placeholder="Select building..."
             choiceList={buildings}
-            state={apartmentNr}
-            setState={setApartmentNr}
+            state={building}
+            setState={setBuilding}
           />
           <DropdownInput
-            placeholder="Select city..."
-            choiceList={cities}
-            state={city}
-            setState={setCity}
+            disabled={!building}
+            placeholder="Select apartment..."
+            choiceList={apartments}
+            state={apartment}
+            setState={setApartment}
           />
         </section>
 

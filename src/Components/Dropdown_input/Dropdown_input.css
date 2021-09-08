@@ -27,6 +27,8 @@ input.dropdown_input {
   visibility: hidden;
   flex-direction: column;
   align-items: flex-start;
+  max-height: 120px;
+  overflow: auto;
   padding: 5px;
   width: 100%;
   transition: visibility 0.1s;
