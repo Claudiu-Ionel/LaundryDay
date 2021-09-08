@@ -11,14 +11,14 @@
 
 /* the GLOBAL day tiles: */
 .react-calendar__tile {
-  border: red 3px solid;
+  border: grey 1px solid;
 }
 
 .react-calendar__month-view__days__day {
-  background: #000;
+  background: #fff;
   font-size: 3rem;
   height: 80px;
-  color: #fff;
+  color: #000;
 }
 
 /* days of week tiles: */
