@@ -1,10 +1,12 @@
-import React from 'react';
+import { React, useEffect } from 'react';
 import './Dropdown_input.css';
 
 const Dropdown_input = ({ placeholder, choiceList, state, setState, disabled }) => {
-  if (disabled === true) {
-    setState('');
-  }
+  useEffect(() => {
+    if (disabled) {
+      setState('');
+    }
+  }, []);
   return (
     <div className="input-wrapper">
       <input
@@ -19,7 +21,7 @@ const Dropdown_input = ({ placeholder, choiceList, state, setState, disabled }) 
         {choiceList?.map((item, index) => {
           return (
             <span
-              onClick={(e) => setState(e.target.innerHTML)}
+              onClick={(e) => setState(item.name ? item.name : item.number)}
               key={item.name ? `${index}-${item.name}` : `${index}-${item.number}`}
             >
               {item.name ? item.name : item.number}

@@ -20,9 +20,6 @@ const AddTenant = ({ moduleState, setModuleState }) => {
   const formRef = useRef(null);
   const firstNameRef = useRef(null);
   const LastNameRef = useRef(null);
-  const userNameRef = useRef(null);
-  const emailRef = useRef(null);
-  const passwordRef = useRef(null);
 
   //CONTEXT VARIABLES
   const cities = globalState.cities;

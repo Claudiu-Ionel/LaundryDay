@@ -25,15 +25,23 @@ function App() {
   const [cities, setCities] = useState([]);
   const [streets, setStreets] = useState([]);
   const [buildings, setBuildings] = useState([]);
+  const [apartments, setApartments] = useState([]);
+
   const globalState = {
     admin,
     setAdmin,
+    cities,
+    setCities,
+    streets,
+    setStreets,
+    buildings,
+    setBuildings,
+    apartments,
+    setApartments
   };
   return (
-    <main>
-      <Background />
-      <Cal />
-      {/*<div className="App">
+
+    <div className="App">
       <AppContext.Provider value={globalState}>
         <Router>
           <Switch>
@@ -46,8 +54,7 @@ function App() {
           </Switch>
         </Router>
       </AppContext.Provider>
-    </div>*/}
-    </main>
+    </div>
   );
 }
 

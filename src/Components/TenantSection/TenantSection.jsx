@@ -3,9 +3,9 @@ import Button from '../button/Button';
 import './TenantsSection.css';
 
 const TenantSection = ({ data }) => {
-  function insert(str, index, value) {
-    return str.substr(0, index) + value + str.substr(index);
-  }
+  // function insert(str, index, value) {
+  //   return str.substr(0, index) + value + str.substr(index);
+  // }
 
   return (
     <div id="tenants-table">

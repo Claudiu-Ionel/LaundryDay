@@ -50,6 +50,7 @@ export default function DBMS() {
         const streetsData = streetsCall.data;
         const buildingsData = buildingsCall.data;
         const apartmentsData = apartmentsCall.data;
+
         setCities(citiesData);
         setStreets(streetsData);
         setBuildings(buildingsData);

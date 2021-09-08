@@ -22,7 +22,7 @@ const pass = process.env.REACT_APP_DB_PASS;
 // });
 
 const db = mysql.createConnection({
-  host: 'localhost',
+  host: host,
   user: user,
   password: pass,
   database: 'dbms',
