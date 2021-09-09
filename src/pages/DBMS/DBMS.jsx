@@ -11,6 +11,7 @@ import AddTenant from '../../Components/AddTenant/AddTenant';
 import './DBMS.css';
 
 export default function DBMS() {
+  const [loading, setLoading] = useState(true);
   const history = useHistory();
   const globalState = useGlobalState();
 
@@ -34,7 +35,7 @@ export default function DBMS() {
   //=============================================
 
   // TENANTS DATA ===============================
-  const [tenantData, setTenantData] = useState([]);
+  const [tenantsData, setTenantsData] = useState([]);
   //=============================================
   console.log(cities, streets);
   //USE EFFECT ==================================
@@ -55,6 +56,7 @@ export default function DBMS() {
         setStreets(streetsData);
         setBuildings(buildingsData);
         setApartments(apartmentsData);
+        setLoading(false);
       } catch (err) {
         console.log(err);
       }
@@ -90,7 +92,7 @@ export default function DBMS() {
           method: 'get',
           url: `http://localhost:3001/showTenants/${encodedCity}/${encodedStreet}/${encodedBuilding}`,
         });
-        setTenantData(request.data);
+        setTenantsData(request.data);
       } catch (err) {}
     } else {
       return;
@@ -113,6 +115,9 @@ export default function DBMS() {
         ></Button>
       </>
     );
+  }
+  if (loading) {
+    return <h3>Loading data...</h3>;
   }
   return (
     <>
@@ -144,7 +149,7 @@ export default function DBMS() {
         />
         <Button text={'Show tenants'} eventHandler={showTenant} className={'button blue'}></Button>
       </form>
-      <TenantSection data={tenantData} />
+      <TenantSection data={tenantsData} />
       <AddTenant list={list} moduleState={showAddTenant} setModuleState={setShowAddTenant} />
     </>
   );
