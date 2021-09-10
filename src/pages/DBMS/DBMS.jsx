@@ -19,8 +19,13 @@ export default function DBMS() {
 
   //FORM VARIABLES =======================
   const [city, setCity] = useState('');
+  const [cityId, setCityId] = useState('test');
   const [street, setStreet] = useState('');
   const [building, setBuilding] = useState('');
+  const [inputValue, setInputValue] = useState('');
+  const [streetDropdownList, setStreetDropdownList] = useState([]);
+  const [buildingDropdownList, setBuildingDropdownList] = useState([]);
+  const [apartmentDropdownList, setapartmentDropdownList] = useState([]);
   //===========================================
 
   //CONTEXT VARIABLES
@@ -37,7 +42,8 @@ export default function DBMS() {
   // TENANTS DATA ===============================
   const [tenantsData, setTenantsData] = useState([]);
   //=============================================
-  console.log(cities, streets);
+  // console.log(cities, streets, buildings);
+  console.log(city);
   //USE EFFECT ==================================
   useEffect(() => {
     const getData = async () => {
@@ -133,20 +139,24 @@ export default function DBMS() {
           placeholder={'Select city...'}
           choiceList={cities}
           setState={setCity}
-          state={city}
+          setStateId={setCityId}
         />
         <DropdownInput
           placeholder={'Select street...'}
           choiceList={streets}
           setState={setStreet}
           state={street}
+          previousSiblingData={city}
+          objProp={'city_id'}
+          disabled={!city}
         />
-        <DropdownInput
+        {/* <DropdownInput
           placeholder={'Select building...'}
           choiceList={buildings}
           setState={setBuilding}
           state={building}
-        />
+          inputValue={{ inputValue, setInputValue }}
+        /> */}
         <Button text={'Show tenants'} eventHandler={showTenant} className={'button blue'}></Button>
       </form>
       <TenantSection data={tenantsData} />
