@@ -22,10 +22,7 @@ export default function DBMS() {
   const [cityId, setCityId] = useState('test');
   const [street, setStreet] = useState('');
   const [building, setBuilding] = useState('');
-  const [inputValue, setInputValue] = useState('');
-  const [streetDropdownList, setStreetDropdownList] = useState([]);
-  const [buildingDropdownList, setBuildingDropdownList] = useState([]);
-  const [apartmentDropdownList, setapartmentDropdownList] = useState([]);
+
   //===========================================
 
   //CONTEXT VARIABLES
@@ -43,7 +40,7 @@ export default function DBMS() {
   const [tenantsData, setTenantsData] = useState([]);
   //=============================================
   // console.log(cities, streets, buildings);
-  console.log(city);
+  console.log('city length in DMBS', city?.length);
   //USE EFFECT ==================================
   useEffect(() => {
     const getData = async () => {
@@ -86,13 +83,12 @@ export default function DBMS() {
   const showTenant = async (e) => {
     e.preventDefault();
     if (city && street && building) {
-      console.log(city, street, building);
-      setCity('');
-      setStreet('');
-      setBuilding('');
-      const encodedCity = encodeURI(city);
-      const encodedStreet = encodeURI(street);
-      const encodedBuilding = encodeURI(building);
+      setCity(null);
+      setStreet(null);
+      setBuilding(null);
+      const encodedCity = encodeURI(city['name']);
+      const encodedStreet = encodeURI(street['name']);
+      const encodedBuilding = encodeURI(building['number']);
       try {
         const request = await Axios({
           method: 'get',
@@ -138,6 +134,7 @@ export default function DBMS() {
         <DropdownInput
           placeholder={'Select city...'}
           choiceList={cities}
+          state={city}
           setState={setCity}
           setStateId={setCityId}
         />
@@ -150,13 +147,15 @@ export default function DBMS() {
           objProp={'city_id'}
           disabled={!city}
         />
-        {/* <DropdownInput
+        <DropdownInput
           placeholder={'Select building...'}
           choiceList={buildings}
           setState={setBuilding}
           state={building}
-          inputValue={{ inputValue, setInputValue }}
-        /> */}
+          previousSiblingData={street}
+          objProp={'street_id'}
+          disabled={!street}
+        />
         <Button text={'Show tenants'} eventHandler={showTenant} className={'button blue'}></Button>
       </form>
       <TenantSection data={tenantsData} />

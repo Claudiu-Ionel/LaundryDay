@@ -26,6 +26,8 @@ const Dropdown_input = ({
     );
   };
 
+  console.log(inputValue.length);
+
   useEffect(() => {
     const filter = () => {
       setFilteredList(
@@ -34,13 +36,32 @@ const Dropdown_input = ({
         }),
       );
     };
+    if (filteredList.length === 0) {
+      setInputValue('');
+    }
     if (previousSiblingData) {
       filter();
     }
     if (disabled) {
-      setState('');
+      setState(null);
+      setInputValue('');
     }
-  }, [disabled, setState, choiceList, objProp, previousSiblingData]);
+    if (!state) {
+      setInputValue('');
+    }
+    if (inputValue.length === 0) {
+      setState(null);
+    }
+  }, [
+    disabled,
+    setState,
+    choiceList,
+    objProp,
+    previousSiblingData,
+    inputValue,
+    filteredList.length,
+    state,
+  ]);
 
   return (
     <div className="input-wrapper">
@@ -56,19 +77,23 @@ const Dropdown_input = ({
         disabled={disabled}
       />
       <div className="choice-list">
-        {filteredList?.map((item, index) => {
-          return (
-            <span
-              onClick={(e) => {
-                setState(item);
-                setInputValue(item.name ? item.name : item.number);
-              }}
-              key={item.name ? `${index}-${item.name}` : `${index}-${item.number}`}
-            >
-              {item.name ? item.name : item.number}
-            </span>
-          );
-        })}
+        {filteredList.length === 0 ? (
+          <span>No Choices</span>
+        ) : (
+          filteredList?.map((item, index) => {
+            return (
+              <span
+                onClick={(e) => {
+                  setState(item);
+                  setInputValue(item.name ? item.name : item.number);
+                }}
+                key={item.name ? `${index}-${item.name}` : `${index}-${item.number}`}
+              >
+                {item.name ? item.name : item.number}
+              </span>
+            );
+          })
+        )}
       </div>
     </div>
   );
