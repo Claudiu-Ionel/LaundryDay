@@ -4,16 +4,17 @@ import Calendar from "react-calendar";
 import "./cal.css";
 
 function Cal() {
-  let test = document.querySelector(".react-calendar__month-view__days__day");
+  const [date, setDate] = useState(new Date());
 
-  console.log(test);
+  function onChange(date) {
+    setDate(date);
+  }
 
-  const [weekNumber, setWeekNumber] = useState(new Date());
   return (
     <div className="calendar-container">
-      <Calendar />
+      <Calendar showWeekNumbers onChange={onChange} value={date} />
     </div>
   );
 }
 
-export default Calendar;
+export default Cal;

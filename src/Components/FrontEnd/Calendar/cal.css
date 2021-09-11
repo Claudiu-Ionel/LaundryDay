@@ -1,12 +1,13 @@
 /* The calendar element: */
 .react-calendar {
-  position: absolute;
+  background: #fff;
   left: 0;
-  right: 0;
   margin-left: auto;
   margin-right: auto;
-  width: 70%;
+  position: absolute;
+  right: 0;
   top: 100px;
+  width: 70%;
 }
 
 /* the GLOBAL day tiles: */
@@ -16,9 +17,9 @@
 
 .react-calendar__month-view__days__day {
   background: #fff;
+  color: #000;
   font-size: 3rem;
   height: 80px;
-  color: #000;
 }
 
 /* days of week tiles: */
@@ -29,17 +30,28 @@
   justify-content: center;
 }
 
-/* month/year tile: */
+/* month/year tiles: */
 .react-calendar__navigation__label {
-  font-size: 2rem;
   background: pink;
+  font-size: 2rem;
+}
+
+/* week number tiles: */
+.react-calendar__month-view__weekNumbers > div {
+  align-items: center;
+  background: #fff;
+  display: flex;
+  font-size: 1.45rem;
+  font-weight: lighter;
+  height: 80px;
+  justify-content: center;
 }
 
 /* nav arrows tiles: */
 .react-calendar__navigation__arrow {
+  background: #000;
   color: #fff;
   font-size: 2rem;
-  background: #000;
-  width: 50px;
   height: 50px;
+  width: 50px;
 }
