@@ -86,25 +86,31 @@ const AddTenant = ({ moduleState, setModuleState }) => {
             setState={setCity}
           />
           <DropdownInput
-            disabled={!city}
-            placeholder="Select Street..."
+            placeholder={'Select street...'}
             choiceList={streets}
-            state={street}
             setState={setStreet}
+            state={street}
+            previousSiblingData={city}
+            objProp={'city_id'}
+            disabled={!city}
           />
           <DropdownInput
-            disabled={!street}
-            placeholder="Select building..."
+            placeholder={'Select building...'}
             choiceList={buildings}
-            state={building}
             setState={setBuilding}
+            state={building}
+            previousSiblingData={street}
+            objProp={'street_id'}
+            disabled={!street}
           />
           <DropdownInput
-            disabled={!building}
             placeholder="Select apartment..."
             choiceList={apartments}
-            state={apartment}
             setState={setApartment}
+            state={apartment}
+            previousSiblingData={building}
+            objProp={'building_id'}
+            disabled={!building}
           />
         </section>
 
