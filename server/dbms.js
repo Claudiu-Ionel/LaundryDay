@@ -2,7 +2,7 @@
 const cors = require('cors');
 const mysql = require('mysql2');
 const express = require('express');
-const { CgArrowLongRight } = require('react-icons/cg');
+
 const app = express();
 
 app.use(express.json());
@@ -133,5 +133,16 @@ app.get('/showTenants/:city/:street/:building', (req, res) => {
     }
   })
 })
-
+app.delete('/deleteTenant/:tenantId', (req, res) => {
+  const tenantId = req.params.tenantId;
+  db.query(`Delete from dbms.tenants where tenants.id = ?;`, [tenantId], (err, result) => {
+    if (err) {
+      console.log(tenantId);
+      res.send(err, "tenant could not be deleted");
+    } else {
+      console.log(tenantId);
+      res.send("tenant deleted")
+    }
+  })
+})
 app.listen(3001)

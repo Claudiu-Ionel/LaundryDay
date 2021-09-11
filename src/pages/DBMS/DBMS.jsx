@@ -19,7 +19,6 @@ export default function DBMS() {
 
   //FORM VARIABLES =======================
   const [city, setCity] = useState('');
-  const [cityId, setCityId] = useState('test');
   const [street, setStreet] = useState('');
   const [building, setBuilding] = useState('');
 
@@ -34,13 +33,15 @@ export default function DBMS() {
   const buildings = globalState.buildings;
   const setBuildings = globalState.setBuildings;
   const setApartments = globalState.setApartments;
+  const setLastCityState = globalState.lastState.setLastCityState;
+  const setLastStreetState = globalState.lastState.setLastStreetState;
+  const setLastBuildingState = globalState.lastState.setLastBuildingState;
   //=============================================
 
   // TENANTS DATA ===============================
   const [tenantsData, setTenantsData] = useState([]);
   //=============================================
-  // console.log(cities, streets, buildings);
-  console.log('city length in DMBS', city?.length);
+
   //USE EFFECT ==================================
   useEffect(() => {
     const getData = async () => {
@@ -136,7 +137,7 @@ export default function DBMS() {
           choiceList={cities}
           state={city}
           setState={setCity}
-          setStateId={setCityId}
+          setLastState={setLastCityState}
         />
         <DropdownInput
           placeholder={'Select street...'}
@@ -146,6 +147,7 @@ export default function DBMS() {
           previousSiblingData={city}
           objProp={'city_id'}
           disabled={!city}
+          setLastState={setLastStreetState}
         />
         <DropdownInput
           placeholder={'Select building...'}
@@ -155,10 +157,11 @@ export default function DBMS() {
           previousSiblingData={street}
           objProp={'street_id'}
           disabled={!street}
+          setLastState={setLastBuildingState}
         />
         <Button text={'Show tenants'} eventHandler={showTenant} className={'button blue'}></Button>
       </form>
-      <TenantSection data={tenantsData} />
+      <TenantSection data={tenantsData} setData={setTenantsData} />
       <AddTenant list={list} moduleState={showAddTenant} setModuleState={setShowAddTenant} />
     </>
   );

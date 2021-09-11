@@ -1,4 +1,5 @@
 import { React, useEffect, useState } from 'react';
+import { useGlobalState } from '../../App';
 import './Dropdown_input.css';
 
 const Dropdown_input = ({
@@ -6,11 +7,10 @@ const Dropdown_input = ({
   choiceList,
   state,
   setState,
-  setStateId,
   disabled,
-  reset,
   previousSiblingData,
   objProp,
+  setLastState,
 }) => {
   const [filteredList, setFilteredList] = useState(choiceList);
   const [inputValue, setInputValue] = useState('');
@@ -25,8 +25,6 @@ const Dropdown_input = ({
       }),
     );
   };
-
-  console.log(inputValue.length);
 
   useEffect(() => {
     const filter = () => {
@@ -84,6 +82,9 @@ const Dropdown_input = ({
             return (
               <span
                 onClick={(e) => {
+                  if (setLastState) {
+                    setLastState(item);
+                  }
                   setState(item);
                   setInputValue(item.name ? item.name : item.number);
                 }}

@@ -43,7 +43,7 @@ const AddTenant = ({ moduleState, setModuleState }) => {
   if (!moduleState) {
     return <></>;
   }
-  console.log(city);
+
   return (
     <div
       className="cover"

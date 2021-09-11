@@ -26,6 +26,9 @@ function App() {
   const [streets, setStreets] = useState([]);
   const [buildings, setBuildings] = useState([]);
   const [apartments, setApartments] = useState([]);
+  const [lastCityState, setLastCityState] = useState('');
+  const [lastStreetState, setLastStreetState] = useState('');
+  const [lastBuildingState, setLastBuildingState] = useState('');
 
   const globalState = {
     admin,
@@ -37,7 +40,12 @@ function App() {
     buildings,
     setBuildings,
     apartments,
-    setApartments
+    setApartments,
+    lastState: {
+      lastCityState, setLastCityState,
+      lastStreetState, setLastStreetState,
+      lastBuildingState, setLastBuildingState,
+    }
   };
   return (
 

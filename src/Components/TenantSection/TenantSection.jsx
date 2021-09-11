@@ -1,11 +1,49 @@
-import { React } from 'react';
+import { React, useState, useEffect, useCallback } from 'react';
+import Axios from 'axios';
+import { useGlobalState } from '../../App';
 import Button from '../button/Button';
 import './TenantsSection.css';
 
-const TenantSection = ({ data }) => {
+const TenantSection = ({ data, setData }) => {
   // function insert(str, index, value) {
   //   return str.substr(0, index) + value + str.substr(index);
   // }
+  const globalState = useGlobalState();
+  const lastCityState = globalState.lastState.lastCityState;
+  const lastStreetState = globalState.lastState.lastStreetState;
+  const lastBuildingState = globalState.lastState.lastBuildingState;
+
+  const getTenantsData = useCallback(async () => {
+    if (lastCityState && lastStreetState && lastBuildingState) {
+      const encodedCity = encodeURI(lastCityState['name']);
+      const encodedStreet = encodeURI(lastStreetState['name']);
+      const encodedBuilding = encodeURI(lastBuildingState['number']);
+      try {
+        const request = await Axios({
+          method: 'get',
+          url: `http://localhost:3001/showTenants/${encodedCity}/${encodedStreet}/${encodedBuilding}`,
+        });
+        setData(request.data);
+      } catch (err) {}
+    } else {
+      return;
+    }
+  }, [lastCityState, lastStreetState, lastBuildingState, setData]);
+
+  const deleteTenant = useCallback(
+    async (tenantId) => {
+      try {
+        await Axios({
+          method: 'delete',
+          url: `http://localhost:3001/deleteTenant/${tenantId}`,
+        }).then(getTenantsData());
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    [getTenantsData],
+  );
+  console.log(`TenantSection`, lastCityState, lastStreetState, lastBuildingState);
 
   return (
     <div id="tenants-table">
@@ -29,9 +67,7 @@ const TenantSection = ({ data }) => {
           <div key={index} className="tenant">
             <Button
               text="Delete"
-              eventHandler={(e) => {
-                console.log(e.target.parentElement);
-              }}
+              eventHandler={(e) => deleteTenant(tenant.id)}
               onMouseEnter={(e) => {
                 e.stopPropagation();
                 const tenant = e.target.nextElementSibling;
