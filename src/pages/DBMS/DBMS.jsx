@@ -165,6 +165,7 @@ export default function DBMS() {
           filterOption={'number'}
         />
         <Button text={'Show tenants'} eventHandler={showTenant} className={'button blue'}></Button>
+        <h2>Test</h2>
       </form>
       <TenantSection data={tenantsData} setData={setTenantsData} />
       <AddTenant list={list} moduleState={showAddTenant} setModuleState={setShowAddTenant} />
