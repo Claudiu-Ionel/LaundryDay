@@ -71,7 +71,6 @@ app.post(`/loginAdmin`, (req, res) => {
     } else {
       res.send(result)
       res.end();
-      console.log(`admin "${username}" logged in!`);
     }
   })
 })
@@ -117,7 +116,6 @@ app.get('/getApartments', (req, res) => {
 
 app.get('/showTenants/:city/:street/:building', (req, res) => {
   const { city, street, building } = req.params;
-  console.log(city, street, building);
   const query = `SELECT t.id, t.first_name, t.second_name, t.personal_number, a.number as apartment_number, b.number as building_number from tenants t
   INNER JOIN apartments a ON a.id = t.apartment_id
   INNER JOIN buildings b ON b.id = t.building_id
@@ -141,6 +139,19 @@ app.delete('/deleteTenant/:tenantId', (req, res) => {
       res.send(err, "tenant could not be deleted");
     } else {
       console.log(tenantId);
+      res.send("tenant deleted")
+    }
+  })
+})
+app.delete('/addTenant/', (req, res) => {
+  const { firstName, secondName, building, apartment } = req.body;
+
+  db.query(`INSERT INTO tenants (first_name,second_name,personal_number,apartment_id,building_id) VALUES (?,?,?,?,?);`, [firstName, secondName, building, apartment], (err, result) => {
+    if (err) {
+      console.log(firstName);
+      res.send(err, "tenant could not be deleted");
+    } else {
+      console.log(firstName);
       res.send("tenant deleted")
     }
   })

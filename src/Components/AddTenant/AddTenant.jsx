@@ -19,7 +19,8 @@ const AddTenant = ({ moduleState, setModuleState }) => {
   const [apartment, setApartment] = useState('');
   const formRef = useRef(null);
   const firstNameRef = useRef(null);
-  const LastNameRef = useRef(null);
+  const lastNameRef = useRef(null);
+  const personalNumberRef = useRef(null);
 
   //CONTEXT VARIABLES
   const cities = globalState.cities;
@@ -30,10 +31,10 @@ const AddTenant = ({ moduleState, setModuleState }) => {
   const tenantToAdd = {
     firstName,
     LastName,
-    // apartmentNr,
-    // userName,
-    // email,
-    // password,
+    city,
+    street,
+    building,
+    apartment,
   };
   const addTenant = (e) => {
     e.preventDefault();
@@ -73,17 +74,28 @@ const AddTenant = ({ moduleState, setModuleState }) => {
             name="lastName"
             id="reg-lastName"
             required
-            ref={LastNameRef}
-            onChange={(e) => inputControl(e, setLastName, LastNameRef, setErrMsg)}
+            ref={lastNameRef}
+            onChange={(e) => inputControl(e, setLastName, lastNameRef, setErrMsg)}
           />
         </section>
-
+        <section className="reg-section">
+          <label htmlFor="personalNumber">ID: </label>
+          <input
+            type="text"
+            name="personalNumber"
+            id="reg-personalNumber"
+            required
+            ref={personalNumberRef}
+            onChange={(e) => inputControl(e, setLastName, personalNumberRef, setErrMsg)}
+          />
+        </section>
         <section className="reg-section">
           <DropdownInput
             placeholder="Select city..."
             choiceList={cities}
             state={city}
             setState={setCity}
+            filterOption={'name'}
           />
           <DropdownInput
             placeholder={'Select street...'}
@@ -93,6 +105,7 @@ const AddTenant = ({ moduleState, setModuleState }) => {
             previousSiblingData={city}
             objProp={'city_id'}
             disabled={!city}
+            filterOption={'name'}
           />
           <DropdownInput
             placeholder={'Select building...'}
@@ -102,6 +115,7 @@ const AddTenant = ({ moduleState, setModuleState }) => {
             previousSiblingData={street}
             objProp={'street_id'}
             disabled={!street}
+            filterOption={'number'}
           />
           <DropdownInput
             placeholder="Select apartment..."
@@ -111,6 +125,7 @@ const AddTenant = ({ moduleState, setModuleState }) => {
             previousSiblingData={building}
             objProp={'building_id'}
             disabled={!building}
+            filterOption={'number'}
           />
         </section>
 

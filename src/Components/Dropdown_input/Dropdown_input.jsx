@@ -11,17 +11,16 @@ const Dropdown_input = ({
   previousSiblingData,
   objProp,
   setLastState,
+  filterOption,
 }) => {
   const [filteredList, setFilteredList] = useState(choiceList);
+  const [inputFilterList, setInputFilterList] = useState(filteredList);
   const [inputValue, setInputValue] = useState('');
   const filterChoiceList = (e) => {
-    setFilteredList(
-      choiceList.filter((item) => {
-        if (item.name) {
-          return item.name.toLowerCase().includes(e.target.value.toLowerCase());
-        } else if (item.number) {
-          return item.number.toString().includes(e.target.value);
-        }
+    console.log(e.target.value);
+    setInputFilterList(
+      filteredList.filter((item) => {
+        return item[filterOption].toString().toLowerCase().includes(e.target.value.toLowerCase());
       }),
     );
   };
@@ -34,9 +33,6 @@ const Dropdown_input = ({
         }),
       );
     };
-    if (filteredList.length === 0) {
-      setInputValue('');
-    }
     if (previousSiblingData) {
       filter();
     }
@@ -44,9 +40,7 @@ const Dropdown_input = ({
       setState(null);
       setInputValue('');
     }
-    if (!state) {
-      setInputValue('');
-    }
+
     if (inputValue.length === 0) {
       setState(null);
     }
@@ -60,7 +54,7 @@ const Dropdown_input = ({
     filteredList.length,
     state,
   ]);
-
+  console.log(inputValue);
   return (
     <div className="input-wrapper">
       <input
@@ -78,7 +72,7 @@ const Dropdown_input = ({
         {filteredList.length === 0 ? (
           <span>No Choices</span>
         ) : (
-          filteredList?.map((item, index) => {
+          inputFilterList?.map((item, index) => {
             return (
               <span
                 onClick={(e) => {

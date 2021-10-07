@@ -43,7 +43,6 @@ const TenantSection = ({ data, setData }) => {
     },
     [getTenantsData],
   );
-  console.log(`TenantSection`, lastCityState, lastStreetState, lastBuildingState);
 
   return (
     <div id="tenants-table">
@@ -67,7 +66,7 @@ const TenantSection = ({ data, setData }) => {
           <div key={index} className="tenant">
             <Button
               text="Delete"
-              eventHandler={(e) => deleteTenant(tenant.id)}
+              eventHandler={(e) => deleteTenant(tenant.id).then(getTenantsData())}
               onMouseEnter={(e) => {
                 e.stopPropagation();
                 const tenant = e.target.nextElementSibling;

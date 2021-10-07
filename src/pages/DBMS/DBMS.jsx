@@ -98,7 +98,9 @@ export default function DBMS() {
         setTenantsData(request.data);
       } catch (err) {}
     } else {
-      return;
+      setCity(null);
+      setStreet(null);
+      setBuilding(null);
     }
   };
   //===================================================
@@ -138,6 +140,7 @@ export default function DBMS() {
           state={city}
           setState={setCity}
           setLastState={setLastCityState}
+          filterOption={'name'}
         />
         <DropdownInput
           placeholder={'Select street...'}
@@ -148,6 +151,7 @@ export default function DBMS() {
           objProp={'city_id'}
           disabled={!city}
           setLastState={setLastStreetState}
+          filterOption={'name'}
         />
         <DropdownInput
           placeholder={'Select building...'}
@@ -158,6 +162,7 @@ export default function DBMS() {
           objProp={'street_id'}
           disabled={!street}
           setLastState={setLastBuildingState}
+          filterOption={'number'}
         />
         <Button text={'Show tenants'} eventHandler={showTenant} className={'button blue'}></Button>
       </form>

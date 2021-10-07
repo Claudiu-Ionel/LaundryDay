@@ -50,9 +50,9 @@ function App() {
   return (
 
     <div className="App">
-      <Background />
-      <Cal />
-      {/*<AppContext.Provider value={globalState}>
+      {/* <Background />
+      <Cal /> */}
+      <AppContext.Provider value={globalState}>
         <Router>
           <Switch>
             <Route path="/DBMS">
@@ -63,7 +63,7 @@ function App() {
             </Route>
           </Switch>
         </Router>
-      </AppContext.Provider>*/}
+      </AppContext.Provider>
     </div>
   );
 }
